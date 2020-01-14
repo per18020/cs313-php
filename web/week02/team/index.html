@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+
+    <div class="container">
+        <div class="section">
+            <div class="columns">
+                <div class="column">
+                    <div id="box1" class="box">
+                        <div class="title">Testing</div>
+                        <div class="subtitle">Wow really cool!</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div id="box2" class="box">
+                        <div class="title">Testing</div>
+                        <div class="subtitle">Wow really cool!</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div id="box3" class="box">
+                        <div class="title">Testing</div>
+                        <div class="subtitle">Wow really cool!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <div class="button" onclick="onClickMe()">Click Me</div>
+                </div>
+                <div class="control">
+                    <div class="button" onclick="onToggleThirdDiv()">Toggle Third Div</div>
+                </div>
+                <div class="control is-expanded">
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input id="color-input" class="input" type="text" placeholder="Blue">
+                        </div>
+                        <div class="control">
+                            <div class="button is-primary" onclick="onChangeFirstDivColor()">Change First Div's Color</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="button is-primary">Click Me</div>
+            <div class="button is-primary">Toggle Third Div</div>
+
+            <input class="input" type="text" placeholder="Blue">
+            <div class="button is-primary">Change Color</div> -->
+
+        </div>
+    </div>
+
+</body>
+
+</html>
