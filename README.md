@@ -1,3 +1,4 @@
-CS 313 PHP Base Code
+Jacob Perry's websites for cs313
 
-Hello World file styled with https://bulma.io/
+Using https://bulma.io/ for styling
+Using https://threejs.org/ for 3d things
