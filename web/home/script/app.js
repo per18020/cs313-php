@@ -3,8 +3,8 @@ import { OrbitControls } from '../../lib/threejs/examples/jsm/controls/OrbitCont
 import { EffectComposer } from '../../lib/threejs/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from '../../lib/threejs/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from '../../lib/threejs/examples/jsm/postprocessing/UnrealBloomPass.js';
-import { ShaderPass } from '../../lib/examples/jsm/postprocessing/ShaderPass.js';
-import { VignetteShader } from '../../lib/examples/jsm/shaders/VignetteShader.js';
+// import { ShaderPass } from '../../lib/examples/jsm/postprocessing/ShaderPass.js';
+// import { VignetteShader } from '../../lib/examples/jsm/shaders/VignetteShader.js';
 
 class App {
     constructor() {
@@ -174,11 +174,11 @@ class App {
 
         let renderPass = new RenderPass(this.scene, this.camera);
 
-        let vignettePass = new ShaderPass(VignetteShader);
+        // let vignettePass = new ShaderPass(VignetteShader);
 
         this.composer.addPass(renderPass);
         this.composer.addPass(bloomPass);
-        this.composer.addPass(vignettePass);
+        // this.composer.addPass(vignettePass);
     }
 
     animate() {
