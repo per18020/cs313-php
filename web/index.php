@@ -14,15 +14,23 @@
 </head>
 
 <body>
+  <div class="container">
+    <div id="panel-collapse-button">
+      <span class="icon">
+        <i class="fas fa-compress"></i>
+      </span>
+    </div>
+  </div>
   <section id="active-area" class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
 
+
         <div class="columns">
           <div class="column is-one-third">
-            <nav class="panel">
+            <nav id="panel" class="panel">
               <div class="panel-heading">
-                Jacob's Homepage
+                <span>Homepage</span>
               </div>
               <p class="panel-tabs">
                 <a id="panel-tabs-home">Home</a>
@@ -36,14 +44,6 @@
                 </div>
               </div>
             </nav>
-            <div class="container">
-              <div class="button is-small is-rounded">
-                <span class="icon">
-                  <i class="fas fa-compress"></i>
-                </span>
-                <span>Toggle Panel</span>
-              </div>
-            </div>
           </div>
         </div>
 

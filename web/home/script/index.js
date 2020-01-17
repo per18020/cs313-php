@@ -8,10 +8,10 @@ window.addEventListener("resize", () => {
     app.resize();
 });
 
-
 // NAV-PANEL CONTROLS
 
 let linkData;
+let panelShowing = true;
 
 fetch('/home/data/directory.json').then((response) => {
     return response.json();
@@ -112,3 +112,14 @@ function resetPanelTabSelection() {
     panelTabTeam.classList.remove("is-active");
     panelTabAssignments.classList.remove("is-active");
 }
+
+// NAV-PANEL SHOW-HIDE
+
+let panelCollapseButton = document.getElementById("panel-collapse-button");
+let panelBox = document.getElementById("panel");
+
+panelCollapseButton.addEventListener("click", () => {
+    panelShowing = !panelShowing;
+    panelBox.style.visibility = panelShowing ? "visible" : "hidden";
+    panelCollapseButton.style.fontSize = "bold";
+});

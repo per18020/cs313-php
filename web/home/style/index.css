@@ -6,6 +6,25 @@
     height: 100%;
 }
 
+#panel-collapse-button {
+    position: absolute;
+    z-index: 2;
+    margin: 2rem 1.5rem;
+    color: white;
+    font-size: large;
+}
+
+#panel-collapse-button:hover > * {
+    cursor: pointer;
+    font-size: larger;
+}
+
+@media only screen and (min-width: 1024px) {
+    #panel-collapse-button {
+        margin: 2rem 0;
+    }
+}
+
 .hero-body {
     z-index: 1;
 }

@@ -22,6 +22,7 @@ class App {
         this.controls = new OrbitControls(this.camera, document.getElementById("active-area"));
         this.controls.maxDistance = 10000;
         this.controls.minDistance = 15;
+        this.controls.enablePan = false;
 
         document.getElementById("threejs").appendChild(this.renderer.domElement);
 
