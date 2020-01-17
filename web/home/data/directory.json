@@ -1,0 +1,21 @@
+{
+    "home": [
+        {
+            "title": "Personal Introduction",
+            "path": "#"
+        }
+    ],
+    "assignments": [],
+    "team": [
+        {
+            "title": "Week 02",
+            "path": "/week02/team/index.html"
+        }
+    ],
+    "misc": [
+        {
+            "title": "Hello World",
+            "path": "/week01/hello.html"
+        }
+    ]
+}
