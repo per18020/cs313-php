@@ -1,3 +1,9 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
+
 #threejs {
     position: absolute;
     padding: 0;
@@ -14,7 +20,7 @@
     font-size: large;
 }
 
-#panel-collapse-button:hover > * {
+#panel-collapse-button:hover>* {
     cursor: pointer;
     font-size: larger;
 }
@@ -45,6 +51,7 @@
     position: absolute;
     z-index: 0;
 }
+
 #threejs {
     position: absolute;
 }
