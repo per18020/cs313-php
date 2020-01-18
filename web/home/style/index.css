@@ -39,6 +39,12 @@
     overflow: hidden;
 }
 
-.panel .panel-tabs {
-    /* padding-top: 5px; */
+#active-area {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+}
+#threejs {
+    position: absolute;
 }

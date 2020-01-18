@@ -24,11 +24,9 @@
   <section id="active-area" class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
-
-
         <div class="columns">
           <div class="column is-one-third">
-            <nav id="panel" class="panel">
+            <nav id="panel" class="panel is-link">
               <div class="panel-heading">
                 <span>Homepage</span>
               </div>
@@ -46,19 +44,13 @@
             </nav>
           </div>
         </div>
-
       </div>
     </div>
     <div id="threejs"></div>
   </section>
 
-  <!-- <script src="/lib/three.min.js"></script> -->
-  <!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/OrbitControls.js"></script> -->
-  <!-- <script src="/lib/examples/js/postprocessing/UnrealBloomPass.js"></script> -->
-
   <script type="module" src="/home/script/app.js"></script>
   <script type="module" src="/home/script/index.js"></script>
-
 </body>
 
 </html>

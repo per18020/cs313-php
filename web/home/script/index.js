@@ -70,7 +70,7 @@ function appendHTMLToPanel(data) {
         let iNode = document.createElement("i");
         iNode.classList.add("fas", "fa-exclamation-triangle");
         iNode.setAttribute("aria-hidden", "true");
-        
+
         let textNode = document.createTextNode("Nothing to display");
 
         spanNode.appendChild(iNode);
@@ -83,8 +83,7 @@ function appendHTMLToPanel(data) {
     }
 
     // Build and append panel-blocks
-    for (let i = 0; i < data.length; i++)
-    {
+    for (let i = 0; i < data.length; i++) {
         let node = document.createElement("a");
         node.classList.add("panel-block");
         node.setAttribute("href", data[i].path);
@@ -122,4 +121,6 @@ panelCollapseButton.addEventListener("click", () => {
     panelShowing = !panelShowing;
     panelBox.style.visibility = panelShowing ? "visible" : "hidden";
     panelCollapseButton.style.fontSize = "bold";
+    app.toggleControls();
 });
+
