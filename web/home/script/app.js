@@ -46,6 +46,7 @@ class App {
     }
 
     toggleControls() {
+        if (!this.mobile) return;
         this.controls.enabled = !this.controls.enabled;
     }
 
