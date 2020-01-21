@@ -8,7 +8,7 @@
     <title>Personal Introduction</title>
 
     <link rel="stylesheet" href="../../lib/bulma.min.css">
-    <link rel="stylesheet" href="personalIntroduction.css">
+    <link rel="stylesheet" href="/home/style/personalIntroduction.css">
 </head>
 
 <body>
