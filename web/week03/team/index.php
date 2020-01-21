@@ -13,7 +13,7 @@
 <body>
     <div class="section">
         <div class="container">
-            <form action="postForm" method="post">
+            <form action="postForm.php" method="post">
                 <div class="field">
                     <label class="label">Name</label>
                     <div class="control">
