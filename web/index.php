@@ -34,7 +34,6 @@
                 <a id="panel-tabs-home">Home</a>
                 <a id="panel-tabs-assignments">Assignments</a>
                 <a id="panel-tabs-team">Team</a>
-                <a id="panel-tabs-misc">Misc</a>
               </p>
               <div id="nav-panel">
                 <div class="panel-block">

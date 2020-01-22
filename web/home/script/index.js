@@ -27,7 +27,6 @@ fetch('/home/data/directory.json').then((response) => {
 let panelTabHome = document.getElementById("panel-tabs-home");
 let panelTabAssignments = document.getElementById("panel-tabs-assignments");
 let panelTabTeam = document.getElementById("panel-tabs-team");
-let panelTabMisc = document.getElementById("panel-tabs-misc");
 let panel = document.getElementById("nav-panel");
 
 panelTabHome.addEventListener("click", () => {
@@ -46,12 +45,6 @@ panelTabTeam.addEventListener("click", () => {
     resetPanelTabSelection();
     panelTabTeam.classList.add("is-active");
     appendHTMLToPanel(linkData.team);
-});
-
-panelTabMisc.addEventListener("click", () => {
-    resetPanelTabSelection();
-    panelTabMisc.classList.add("is-active");
-    appendHTMLToPanel(linkData.misc);
 });
 
 function appendHTMLToPanel(data) {
@@ -107,7 +100,6 @@ function appendHTMLToPanel(data) {
 
 function resetPanelTabSelection() {
     panelTabHome.classList.remove("is-active");
-    panelTabMisc.classList.remove("is-active");
     panelTabTeam.classList.remove("is-active");
     panelTabAssignments.classList.remove("is-active");
 }

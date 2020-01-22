@@ -1,11 +1,20 @@
 {
     "home": [
         {
+            "title": "Hello World",
+            "path": "/week01/hello.html"
+        },
+        {
             "title": "Personal Introduction",
             "path": "/home/pages/personalIntroduction.php"
         }
     ],
-    "assignments": [],
+    "assignments": [
+        {
+            "title": "Week 03 - Shopping Cart",
+            "path": "/week03/assignment/index.php"
+        }
+    ],
     "team": [
         {
             "title": "Week 02",
@@ -14,12 +23,6 @@
         {
             "title": "Week 03",
             "path": "/week03/team/index.php"
-        }
-    ],
-    "misc": [
-        {
-            "title": "Hello World",
-            "path": "/week01/hello.html"
         }
     ]
 }
