@@ -1,0 +1,25 @@
+.table td {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.input {
+    width: 40px;
+    text-align: center;
+}
+
+.remove-cell {
+    width: 40px;
+}
+
+.small-cell {
+    width: 115px;   
+}
+
+.right-align {
+    text-align: right;
+}
+
+#subtotal-level {
+    padding: 0 8px;
+}

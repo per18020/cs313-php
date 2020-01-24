@@ -1,0 +1,4 @@
+.modal > .modal-content > .box > .container > .level { /* that selector is yucky */
+    padding-top: 16px;
+}
+

@@ -1,7 +1,37 @@
 [
     {
-        "title": "Testing",
+        "title": "Ice Cream",
+        "price": 5.99,
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti recusandae, magnam vitae laborum quas mollitia minima repellat facere ducimus possimus odio doloremque autem praesentium officiis esse facilis numquam unde quo.",
-        "imageURL": "http://placekitten.com/200/300"
+        "imageURL": "https://source.unsplash.com/800x600/?icecream, cone, food",
+        "itemID": 0
+    },
+    {
+        "title": "Pasta",
+        "price": 8.99,
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti recusandae, magnam vitae laborum quas mollitia minima repellat facere ducimus possimus odio doloremque autem praesentium officiis esse facilis numquam unde quo.",
+        "imageURL": "https://source.unsplash.com/800x600/?pasta, noodles",
+        "itemID": 1
+    },
+    {
+        "title": "Bread",
+        "price": 3.99,
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti recusandae, magnam vitae laborum quas mollitia minima repellat facere ducimus possimus odio doloremque autem praesentium officiis esse facilis numquam unde quo.",
+        "imageURL": "https://source.unsplash.com/800x600/?bread, loaf",
+        "itemID": 2
+    },
+    {
+        "title": "Pizza",
+        "price": 10.57,
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti recusandae, magnam vitae laborum quas mollitia minima repellat facere ducimus possimus odio doloremque autem praesentium officiis esse facilis numquam unde quo.",
+        "imageURL": "https://source.unsplash.com/800x600/?pizza, food",
+        "itemID": 3
+    },
+    {
+        "title": "Burger",
+        "price": 5.50,
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti recusandae, magnam vitae laborum quas mollitia minima repellat facere ducimus possimus odio doloremque autem praesentium officiis esse facilis numquam unde quo.",
+        "imageURL": "https://source.unsplash.com/800x600/?burger",
+        "itemID": 4
     }
 ]
