@@ -25,6 +25,11 @@ function findItem($arr, $itemID)
     }
 }
 
+// You shouldn't be here if you have no items!
+if (count($cart->items) == 0) {
+    header("Location:../index.php");
+} 
+
 ?>
 
 <!DOCTYPE html>
