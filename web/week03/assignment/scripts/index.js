@@ -40,6 +40,7 @@ for (let i = 0; i < modalAddToCartButtons.length; i++) {
             });
         }
         closeAllModals();
+        postData("/week03/assignment/api/savecart.php", cart);
         notify(`Added "${item.title}" to your cart!`);
     }, false);
 }
