@@ -1,9 +1,12 @@
-let data, cart;
-fetch("/week03/assignment/api/getitems.php", { method: 'GET' }).then((response) => {return response.json()}).then((response) => {data = response});
+let cart;
 fetch("/week03/assignment/api/getcart.php", { method: 'GET' }).then((response) => {return response.json()}).then((response) => {cart = response});
 
 let checkoutButton = document.getElementById("checkout-button");
 checkoutButton.addEventListener("click", () => {
+    if (cart.items.length <= 0) {
+        error("Cannot checkout. You have no items in your cart");
+        return;
+    }
     checkoutButton.classList.add("is-loading");
     postData("/week03/assignment/api/savecart.php", cart).then(() => {
         window.location.href = "/week03/assignment/pages/checkout.php";
@@ -26,7 +29,7 @@ for (let i = 0; i < removeItemButtons.length; i++) {
         let itemID = btn.getAttribute("item-id");
         let listItemId = btn.getAttribute("list-item-link");
         // Remove item from cart
-        cart = cart.filter((value) => { return value.itemID != itemID });
+        cart.items = cart.items.filter((value) => { return value.itemID != itemID });
         // Remove item from list
         let listItem = document.getElementById(listItemId);
         listItem.parentNode.removeChild(listItem);
@@ -43,15 +46,15 @@ for (let i = 0; i < addButtons.length; i++) {
         let quantityID = btn.getAttribute("quantity-link");
         let totalID = btn.getAttribute("total-link");
         // Update cart
-        let cartItem = cart.find(e => e.itemID == itemID);
+        let cartItem = cart.items.find(e => e.itemID == itemID);
         cartItem.quantity++;
+        cartItem.totalprice = cartItem.unitprice * cartItem.quantity;
         // Update quantity input
         let quantity = document.getElementById(quantityID);
         quantity.value = cartItem.quantity;
         // Update total price
-        let item = data.find(e => e.itemID == itemID);
         let total = document.getElementById(totalID);
-        total.innerHTML = "$" + (item.price * cartItem.quantity).toFixed(2);
+        total.innerHTML = "$" + cartItem.totalprice.toFixed(2);
         // Do the subtotal thing
         setSubtotal();
     });
@@ -65,15 +68,15 @@ for (let i = 0; i < subtractButtons.length; i++) {
         let quantityID = btn.getAttribute("quantity-link");
         let totalID = btn.getAttribute("total-link");
         // Update cart
-        let cartItem = cart.find(e => e.itemID == itemID);
+        let cartItem = cart.items.find(e => e.itemID == itemID);
         cartItem.quantity -= cartItem.quantity <= 1 ? 0 : 1;
+        cartItem.totalprice = cartItem.unitprice * cartItem.quantity;
         // Update quantity input
         let quantity = document.getElementById(quantityID);
         quantity.value = cartItem.quantity;
         // Update total price
-        let item = data.find(e => e.itemID == itemID);
         let total = document.getElementById(totalID);
-        total.innerHTML = "$" + (item.price * cartItem.quantity).toFixed(2);
+        total.innerHTML = "$" + cartItem.totalprice.toFixed(2);
         // Do the subtotal thing
         setSubtotal();
     });
@@ -86,24 +89,27 @@ for (let i = 0; i < quantityInputs.length; i++) {
         let itemID = input.getAttribute("item-id");
         let totalID = input.getAttribute("total-link");
         // Update cart
-        let cartItem = cart.find(e => e.itemID == itemID);
+        let cartItem = cart.items.find(e => e.itemID == itemID);
         cartItem.quantity = input.value ? input.value : 1;
+        cartItem.totalprice = cartItem.unitprice * cartItem.quantity;
         // Update total price
-        let item = data.find(e => e.itemID == itemID);
         let total = document.getElementById(totalID);
-        total.innerHTML = "$" + (item.price * cartItem.quantity).toFixed(2);
+        total.innerHTML = "$" + cartItem.totalprice.toFixed(2);
         // Do the subtotal thing
         setSubtotal();
-    })
+    });
+    input.addEventListener("change", function() {
+        // If value is null, default to 1
+        input.value = input.value ? input.value : 1;
+    });
 }
 
 function setSubtotal() {
     let subtotalElement = document.getElementById("subtotal");
     let subtotal = 0;
     // Iterate through each item and calculate their combined price
-    for (let i = 0; i < cart.length; i++) {
-        let item = data.find(e => e.itemID == cart[i].itemID);
-        subtotal += cart[i].quantity * item.price;
+    for (let i = 0; i < cart.items.length; i++) {
+        subtotal += cart.items[i].totalprice;
     }
     subtotalElement.innerHTML = "$" + subtotal.toFixed(2);
 }

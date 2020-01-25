@@ -12,7 +12,20 @@ foreach ($items as $key => $item) {
   $items[$key]["itemID"] = $key;
 }
 
-$serializedCart = isset($_SESSION["cart"]) ? $_SESSION["cart"] : [];
+// $_SESSION["cart"] = null;
+$_SESSION["cart"] = isset($_SESSION["cart"]) ? $_SESSION["cart"] :
+  json_encode(
+    (object) [
+      "info" => (object) [
+        "street" => "",
+        "city" => "",
+        "state" => "",
+        "zip" => "",
+        "country" => ""
+      ],
+      "items" => []
+    ]
+  );
 
 ?>
 
@@ -124,6 +137,7 @@ $serializedCart = isset($_SESSION["cart"]) ? $_SESSION["cart"] : [];
     </div>
   </div>
   <div class="notification is-info" id="notify">Test</div>
+  <div class="notification is-danger" id="error">Test</div>
 
   <script src="/week03/assignment/scripts/util.js"></script>
   <script src="/week03/assignment/scripts/index.js"></script>

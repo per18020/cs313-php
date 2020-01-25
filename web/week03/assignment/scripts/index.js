@@ -1,9 +1,6 @@
-let timeout = null; // For notify
-
 let data, cart;
 fetch("/week03/assignment/api/getitems.php", { method: 'GET' }).then((response) => {return response.json()}).then((response) => {data = response});
 fetch("/week03/assignment/api/getcart.php", { method: 'GET' }).then((response) => {return response.json()}).then((response) => {cart = response});
-
 
 let modalBackgrounds = document.getElementsByClassName("modal-background");
 for (let i = 0; i < modalBackgrounds.length; i++) {
@@ -35,9 +32,11 @@ for (let i = 0; i < modalAddToCartButtons.length; i++) {
         let item = data.find(e => e.itemID == itemID);
         let inCart = alreadyInCart(itemID);
         if (!inCart) {
-            cart.push({
+            cart.items.push({
                 itemID: itemID,
-                quantity: 1
+                quantity: 1,
+                unitprice: item.price,
+                totalprice: item.price
             });
         }
         closeAllModals();
@@ -47,6 +46,10 @@ for (let i = 0; i < modalAddToCartButtons.length; i++) {
 
 let viewCartButton = document.getElementById("view-cart-button");
 viewCartButton.addEventListener("click", function() {
+    if (cart.items.length <= 0) {
+        error("You have no items in your cart");
+        return;
+    }
     viewCartButton.classList.add("is-loading");
     postData("/week03/assignment/api/savecart.php", cart).then(() => {
         window.location.href = "/week03/assignment/pages/cart.php";
@@ -54,7 +57,7 @@ viewCartButton.addEventListener("click", function() {
 });
 
 function alreadyInCart(itemID) {
-    return cart.find(e => e.itemID == itemID);
+    return cart.items.find(e => e.itemID == itemID);
 }
 
 function closeAllModals() {
@@ -64,10 +67,3 @@ function closeAllModals() {
     }
 }
 
-function notify(msg) {
-    var x = document.getElementById("notify");
-    x.innerHTML = msg;
-    x.classList.add("show");
-    if (timeout) clearTimeout(timeout);
-    timeout = setTimeout(function () { x.classList.remove("show") }, 2900);
-}

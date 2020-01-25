@@ -38,6 +38,7 @@ function findItem($arr, $itemID)
 
     <link rel="stylesheet" href="/lib/bulma.min.css">
     <link rel="stylesheet" href="/week03/assignment/style/cart.css">
+    <link rel="stylesheet" href="/week03/assignment/style/toast.css">
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
@@ -57,9 +58,9 @@ function findItem($arr, $itemID)
                     <div class="level-item">
                         <div class="button is-info" id="keep-shopping-button">
                             <span class="icon">
-                                <i class="fa fa-shopping-bag"></i>
+                                <i class="fa fa-store"></i>
                             </span>
-                            <span>Keep Shopping</span>
+                            <span>Continue Shopping</span>
                         </div>
                     </div>
                     <div class="level-item">
@@ -79,13 +80,13 @@ function findItem($arr, $itemID)
                         <th></th>
                         <th>Product</th>
                         <th>Quantity</th>
-                        <th>Unit Price</th>
-                        <th>Total Price</th>
+                        <th class="has-text-right">Unit Price</th>
+                        <th class="has-text-right">Total Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($cart as $cartItem) {
+                    foreach ($cart->items as $cartItem) {
 
                         $item = findItem($items, $cartItem->itemID);
 
@@ -123,10 +124,10 @@ function findItem($arr, $itemID)
                                 </div>
                             </td>
                             <td class="small-cell">
-                                <h4 class="title is-4 right-align">$' . number_format($item["price"], 2) . '</h4>
+                                <h4 class="title is-4 has-text-right">$' . number_format($item["price"], 2) . '</h4>
                             </td>
                             <td class="small-cell">
-                                <h4 id="' . $item["totalLink"] . '" class="title is-4 right-align">$' . number_format($item["price"] * $cartItem->quantity, 2) . '</h4>
+                                <h4 id="' . $item["totalLink"] . '" class="title is-4 has-text-right">$' . number_format($item["price"] * $cartItem->quantity, 2) . '</h4>
                             </td>
                         </tr>';
                     }
@@ -143,13 +144,13 @@ function findItem($arr, $itemID)
                 <div class="level-right">
                     <div class="level-item">
                         <div id="subtotal" class="title is-4">
-                            <?php 
-                                $subtotal = 0;
-                                foreach ($cart as $cartItem) {
-                                    $item = findItem($items, $cartItem->itemID);
-                                    $subtotal += $item["price"] * $cartItem->quantity;
-                                }
-                                echo "$" . number_format($subtotal, 2);
+                            <?php
+                            $subtotal = 0;
+                            foreach ($cart->items as $cartItem) {
+                                $item = findItem($items, $cartItem->itemID);
+                                $subtotal += $item["price"] * $cartItem->quantity;
+                            }
+                            echo "$" . number_format($subtotal, 2);
                             ?>
                         </div>
                     </div>
@@ -158,6 +159,9 @@ function findItem($arr, $itemID)
 
         </div>
     </div>
+
+    <div class="notification is-info" id="notify">Test</div>
+    <div class="notification is-danger" id="error">Test</div>
 
     <script src="/week03/assignment/scripts/util.js"></script>
     <script src="/week03/assignment/scripts/cart.js"></script>
