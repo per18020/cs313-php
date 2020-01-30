@@ -7,6 +7,10 @@
         {
             "title": "Personal Introduction",
             "path": "/home/pages/personalIntroduction.php"
+        },
+        {
+            "title": "Project 01 - Markdown Notes",
+            "path": "/project01/index.php"
         }
     ],
     "assignments": [
