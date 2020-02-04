@@ -5,14 +5,20 @@
 let bindings = {
     removeFormattingOnBackspace: {
         key: "backspace",
-        format: ["header", "code-block"],
+        format: ["header", "code-block", "blockquote"],
         empty: true,
-        handler: (range, context) => {
-            if (context.format.header) {
-                this.quill.format("header", false);
-            } else {
-                this.quill.format("code-block", false);
-            }
+        handler: () => {
+            let pos = this.quill.getSelection();
+            this.quill.removeFormat(pos.index, pos.length);
+        }
+    },
+    removeFormattingOnEnter: {
+        key: "enter",
+        format: ["blockquote"],
+        empty: true,
+        handler: () => {
+            let pos = this.quill.getSelection();
+            this.quill.removeFormat(pos.index, pos.length);
         }
     }
 }
@@ -24,5 +30,20 @@ var quill = new Quill('#editor', {
             bindings: bindings
         },
         markdownShortcuts: {}
-    }
+    },
+    scrollingContainer: '#scrolling-container'
+});
+
+// handlebars
+
+let collections = [
+    "Test1",
+    "Test2",
+    "Test3",
+]
+
+fetch('/project01/templates/collection-column-item.handlebars').then((response) => {
+    return response.text();
+}).then((response) => {
+    document.getElementById("collection-column").innerHTML += Handlebars.compile(response)(collections);
 });

@@ -14,7 +14,7 @@ CREATE TABLE public.note
 	title varchar(255) NOT NULL,
 	creation timestamp NOT NULL,
 	last_edited timestamp NOT NULL,
-	content text NOT NULL
+	data jsonb NOT NULL
 );
 
 CREATE TABLE public.folder 

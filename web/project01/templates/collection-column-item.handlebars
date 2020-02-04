@@ -1,0 +1,75 @@
+<div>
+    <div class="collection-column-header is-vertical-center">
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <span class="collection-column-item-title">Username</span>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <span class="icon is-medium">
+                        <div class="fa-stack">
+                            <i class="fas fa-circle fa-stack-2x icon-background"></i>
+                            <i class="fas fa-user-cog fa-stack-1x"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="collection-column-item">
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <span class="icon"><i class="fas fa-sticky-note"></i></span>
+                    <span class="collection-column-item-title">All Notes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="collection-column-item">
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <span class="icon"><i class="fas fa-trash"></i></span>
+                    <span class="collection-column-item-title">Trash</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="collection-column-spacer"></div>
+    {{#each this}}
+    <div class="collection-column-item">
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <span class="icon"><i class="fas fa-folder"></i></span>
+                    <span class="collection-column-item-title">{{this}}</span>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <span class="icon is-small">
+                        <div class="fa-stack">
+                            <i class="fas fa-circle fa-stack-2x icon-background"></i>
+                            <i class="fas fa-cog fa-stack-1x"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{!-- <div class="collection-column-spacer"></div> --}}
+    <div class="collection-column-item collection-column-create-collection">
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <span class="icon"><i class="fas fa-plus"></i></span>
+                    <span class="collection-column-item-title">Create Collection</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

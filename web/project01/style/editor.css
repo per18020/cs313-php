@@ -1,0 +1,16 @@
+.ql-editor h1, .ql-editor h2, .ql-editor h3 {
+    margin: 0 0 12px 0 ;
+    font-weight: 700;
+}
+
+.ql-editor h1 strong, .ql-editor h2 strong, .ql-editor h3 strong {
+    font-weight: 900;
+}
+
+.ql-editor hr {
+    background-color: #262d38;
+}
+
+.ql-editor .ql-syntax {
+    background-color: #262d38;
+}

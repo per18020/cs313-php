@@ -10,6 +10,12 @@
         $last_name = $fRow["last_name"];
         $relationship_id = $fRow["relationship_id"];
 
-        echo "<h1>$first_name $last_name is my $relationship_id</h1>";
+        $relationships = $db->prepare("SELECT description FROM w5_relationships WHERE id = $relationship_id");
+        $relationships->execute();
+        while ($rRow = $relationships->fetch(PDO::FETCH_ASSOC)) {
+            $relationship = $rRow["description"];
+        }
+
+        echo "<h1>$first_name $last_name is my $relationship</h1>";
     }
 ?>

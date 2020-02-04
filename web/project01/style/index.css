@@ -1,0 +1,111 @@
+html {
+    box-sizing: border-box;
+    overflow-y: hidden;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    color: #262d38;
+}
+
+/* Edit bulma classes to make them do what I want them to do */
+
+.column {
+    padding: 0;
+    margin: 0;
+}
+
+/* Quick hack to increase specificity */
+
+.columns.columns {
+    height: 100%;
+    margin-bottom: 0;
+    margin: 0;
+}
+
+.sticky-column {
+    height: 100vh;
+    max-height: 100%;
+    overflow: auto;
+}
+
+/* Tell Quill not to scroll */
+
+#editor {
+    height: auto;
+    width: 100%;
+    padding: 50px;
+}
+
+#editor .ql-editor {
+    font-size: 18px;
+    overflow-y: visible;
+}
+
+.scrolling-container {
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    overflow-y: auto;
+    background-color: #f8f8f8;
+}
+
+/* Individual column styling */
+
+#collection-column {
+    background-color: #262d38;
+    color: #f8f8f8;
+    flex: none;
+    width: 200px;
+}
+
+.collection-column-header {
+    height: 64px;
+    padding: 8px 12px;
+}
+
+.collection-column-spacer {
+    height: 32px;
+    width: auto;
+}
+
+.collection-column-item {
+    padding: 8px 12px;
+    padding-right: 20px;
+}
+
+.collection-column-item:hover {
+    cursor: pointer;
+    background-color: #2d3644;
+}
+
+.collection-column-item-title {
+    padding: 0 8px;
+}
+
+.collection-column-create-collection {
+    color: #98a3ac;
+}
+
+.is-vertical-center {
+    /* Use padding instead of flex because flex messes with bulma classes */
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.icon-background {
+    color: #3a4558;
+    visibility: hidden;
+}
+
+#note-column {
+    border-right: 1px solid #e8eaed;
+    background-color: #f8f8f8;
+    flex: none;
+    width: 350px;
+}
+
+#note-column>* {
+    margin: 12px;
+}
