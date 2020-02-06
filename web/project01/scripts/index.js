@@ -45,15 +45,9 @@ postData("/project01/api/getFolders.php", {id: 1}).then((response) => {
 
 // handlebars
 
-let collections = [
-    "Test1",
-    "Test2",
-    "Test3",
-]
-
 fetch('/project01/templates/collection-column-item.handlebars').then((response) => {
     return response.text();
 }).then((response) => {
-    document.getElementById("collection-column").innerHTML += Handlebars.compile(response)(collections);
+    document.getElementById("collection-column").innerHTML += Handlebars.compile(response)(folders);
 });
 
