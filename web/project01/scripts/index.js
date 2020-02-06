@@ -44,23 +44,17 @@ var quill = new Quill('#editor', {
 //     return response.json();
 // }).then((response) => buildCollectionColumn(response.folders))
 
-
 Promise.all([
     postData("/project01/api/getUser.php", {id: 1}).then(response => { return response.json(); }),
     postData("/project01/api/getFolders.php", {id: 1}).then(response => { return response.json(); })
-]).then(values => {
-    let userResponse = values[0];
-    let foldersResponse = values[1];
-
-    let data = {
+]).then(([userResponse, foldersResponse]) => {
+    buildCollectionColumn({
         folders: foldersResponse.folders,
-        username: userResponse.email
-    }
-
-    console.log(data);
-
-    buildCollectionColumn(data);
+        username: userResponse.username
+    });
 });
+
+postData("/project01/api/getAllNotes.php", {id: 1}).then(response => { return response.json(); }).then(response => console.log(response));
 
 // Handlebars
 function buildCollectionColumn(data) {

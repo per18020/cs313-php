@@ -5,8 +5,12 @@
     $user_id = htmlspecialchars($input->id);
 
     $response = new stdClass();
-    $response->email = "email";
-    $response->username = "username";
+    $response->id = 0;
+    $response->folder_id = 0;
+    $response->title = "Title";
+    $response->creation = "Creation";
+    $response->last_edited = "Last_Edited";
+    $response->data = "[]";
     $response->error = false;
 
     $db = NULL;
@@ -27,14 +31,16 @@
         exit;
     }
 
-    $usersPDO = $db->prepare("SELECT * FROM public.user WHERE id = $user_id");
+    $usersPDO = $db->prepare("SELECT * FROM public.note WHERE user_id = $user_id");
     $usersPDO->execute();
     
     while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {
         $response->id = $row["id"];
-        $response->email = $row["email"];
-        $response->username = $row["username"];
-        $response->last_edited_note = $row["last_edited_note"];
+        $response->folder_id = $row["folder_id"];
+        $response->title = $row["title"];
+        $response->creation = $row["creation"];
+        $response->last_edited = $row["last_edited"];
+        $response->data = $row["data"];
     }
 
     echo json_encode($response);
