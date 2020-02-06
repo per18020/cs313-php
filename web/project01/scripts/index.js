@@ -36,18 +36,19 @@ var quill = new Quill('#editor', {
 
 // get folders
 
-let folders;
 postData("/project01/api/getFolders.php", {id: 1}).then((response) => {
     return response.json();
 }).then((response) => {
-    folders = response.folders;
+    buildCollectionColumn(response.folders);
 });
 
 // handlebars
+function buildCollectionColumn(folders) {
+    fetch('/project01/templates/collection-column-item.handlebars').then((response) => {
+        return response.text();
+    }).then((response) => {
+        document.getElementById("collection-column").innerHTML += Handlebars.compile(response)(folders);
+    });
+}
 
-fetch('/project01/templates/collection-column-item.handlebars').then((response) => {
-    return response.text();
-}).then((response) => {
-    document.getElementById("collection-column").innerHTML += Handlebars.compile(response)(folders);
-});
 
