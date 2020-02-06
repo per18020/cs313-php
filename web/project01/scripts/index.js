@@ -34,21 +34,39 @@ var quill = new Quill('#editor', {
     scrollingContainer: '#scrolling-container'
 });
 
-// get folders
+// // Get username
+// postData("/project01/api/getUser.php", {id: 1}).then((response) => {
+//     return response.json();
+// }).then((response) => console.log(response));
 
-postData("/project01/api/getFolders.php", {id: 1}).then((response) => {
-    return response.json();
-}).then((response) => {
-    buildCollectionColumn(response.folders);
+// // Get folders
+// postData("/project01/api/getFolders.php", {id: 1}).then((response) => {
+//     return response.json();
+// }).then((response) => buildCollectionColumn(response.folders))
+
+
+Promise.all([
+    postData("/project01/api/getUser.php", {id: 1}).then(response => { return response.json(); }),
+    postData("/project01/api/getFolders.php", {id: 1}).then(response => { return response.json(); })
+]).then(values => {
+    let userResponse = values[0];
+    let foldersResponse = values[1];
+
+    let data = {
+        folders: foldersResponse.folders,
+        username: userResponse.email
+    }
+
+    console.log(data);
+
+    buildCollectionColumn(data);
 });
 
-// handlebars
-function buildCollectionColumn(folders) {
+// Handlebars
+function buildCollectionColumn(data) {
     fetch('/project01/templates/collection-column-item.handlebars').then((response) => {
         return response.text();
     }).then((response) => {
-        document.getElementById("collection-column").innerHTML += Handlebars.compile(response)(folders);
+        document.getElementById("collection-column").innerHTML += Handlebars.compile(response)(data);
     });
 }
-
-
