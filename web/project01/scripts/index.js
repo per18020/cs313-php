@@ -34,6 +34,15 @@ var quill = new Quill('#editor', {
     scrollingContainer: '#scrolling-container'
 });
 
+// get folders
+
+let folders;
+postData("/project01/api/getFolders.php", {id: 1}).then((response) => {
+    return response.json();
+}).then((response) => {
+    folders = response.folders;
+});
+
 // handlebars
 
 let collections = [
@@ -47,3 +56,4 @@ fetch('/project01/templates/collection-column-item.handlebars').then((response) 
 }).then((response) => {
     document.getElementById("collection-column").innerHTML += Handlebars.compile(response)(collections);
 });
+

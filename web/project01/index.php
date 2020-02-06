@@ -45,6 +45,7 @@
     <script src="/project01/lib/handlebars.min-v4.7.2.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="/project01/lib/quill-markdown.js"></script>
+    <script src="/project01/scripts/util.js"></script>
     <script src="/project01/scripts/index.js"></script>
 </body>
 
