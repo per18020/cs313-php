@@ -8,6 +8,8 @@
     $response->folders = [];
     $response->error = false;
 
+    $db = NULL;
+
     // necessary to catch errors thrown from other requried files
     function exception_error_handler($errno, $errstr, $errfile, $errline ) {
         throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
@@ -31,8 +33,7 @@
         $folder->id = $fRow["id"];
         $folder->title = $fRow["title"];
 
-        
-        array_push($folders, $folder);
+        array_push($response->folders, $folder);
     }
 
     echo json_encode($response);
