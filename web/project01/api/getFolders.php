@@ -26,8 +26,8 @@
         exit;
     }
 
-    // $foldersPDO = $db->prepare("SELECT * FROM public.folder WHERE user_id = $user_id");
-    // $foldersPDO->execute();
+    $foldersPDO = $db->prepare("SELECT * FROM public.folder WHERE user_id = $user_id");
+    $foldersPDO->execute();
     
     // while ($fRow = $foldersPDO->fetch(PDO::FETCH_ASSOC)) {
     //     $folder = new stdClass();
@@ -36,8 +36,6 @@
 
     //     array_push($response->folders, $folder);
     // }
-
-    var_dump($db);
-
+    
     echo json_encode($response);
 ?>
