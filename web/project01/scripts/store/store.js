@@ -1,23 +1,14 @@
-const defaultState = {
-    fetching: false,
-    fetched: false,
-    user: {},
+const rootReducer = Redux.combineReducers({
+    userReducer, 
+    folderReducer
+});
+
+const store = Redux.createStore(rootReducer, Redux.applyMiddleware(ReduxThunk.default));
+
+function getUserState() {
+    return store.getState().userReducer.user;
 }
 
-const userReducer = function counter(state = defaultState, action) {
-    switch (action.type) {
-        case GET_USER_REQUEST:
-            return {...state, fetching: true};
-        case GET_USER_RESPONSE:
-            return {
-                ...state, 
-                fetching: false,
-                fetched: true,
-                user: action.response
-            };
-        default:
-            return state
-    }
+function getFoldersState() {
+    return store.getState().folderReducer.folders;
 }
-
-const store = Redux.createStore(userReducer, Redux.applyMiddleware(ReduxThunk.default));

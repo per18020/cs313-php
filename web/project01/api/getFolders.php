@@ -1,5 +1,5 @@
 <?php
-    error_reporting(E_ALL ^ E_WARNING);
+    error_reporting(0); // Turn off error reporting. I'll handle my own errors with json
 
     $input = json_decode(file_get_contents('php://input'));
     $user_id = htmlspecialchars($input->id);

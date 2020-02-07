@@ -9,7 +9,9 @@ class FolderColumnObserver {
     }
 
     handleChange() {
-        let folderColumn = document.getElementById("collection-column");
-        folderColumn.innerHTML += "ran!";
+        buildCollectionColumn({
+            folders: getFoldersState(),
+            username: getUserState().username
+        });
     }
 }
