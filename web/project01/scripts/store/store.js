@@ -3,7 +3,11 @@ const rootReducer = Redux.combineReducers({
     folderReducer
 });
 
-const store = Redux.createStore(rootReducer, Redux.applyMiddleware(ReduxThunk.default));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || Redux.compose;
+
+const store = Redux.createStore(rootReducer, composeEnhancers(
+    Redux.applyMiddleware(ReduxThunk.default)
+));
 
 function getUserState() {
     return store.getState().userReducer.user;
