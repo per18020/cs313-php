@@ -5,13 +5,19 @@
     $user_id = htmlspecialchars($input->id);
 
     $response = new stdClass();
-    $response->id = 0;
-    $response->folder_id = 0;
-    $response->title = "Title";
-    $response->creation = "Creation";
-    $response->last_edited = "Last_Edited";
-    $response->data = "[]";
+    $response->notes = [];
     $response->error = false;
+
+    // Default note to work without a database // Delete after testing!
+    $note = new stdClass();
+    $note->id = 0;
+    $note->folder_id = 0;
+    $note->title = "Title";
+    $note->creation = "Creation";
+    $note->last_edited = "Last_Edited";
+    $note->data = "[]";
+
+    array_push($response->notes, $note);
 
     $db = NULL;
 
@@ -35,12 +41,15 @@
     $usersPDO->execute();
     
     while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {
-        $response->id = $row["id"];
-        $response->folder_id = $row["folder_id"];
-        $response->title = $row["title"];
-        $response->creation = $row["creation"];
-        $response->last_edited = $row["last_edited"];
-        $response->data = $row["data"];
+        $note = new stdClass();
+        $note->id = $row["id"];
+        $note->folder_id = $row["folder_id"];
+        $note->title = $row["title"];
+        $note->creation = $row["creation"];
+        $note->last_edited = $row["last_edited"];
+        $note->data = $row["data"];
+
+        array_push($response->notes, $note);
     }
 
     echo json_encode($response);
