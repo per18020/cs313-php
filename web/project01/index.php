@@ -18,7 +18,7 @@
 <body>
     <div class="columns">
         <div id="collection-column" class="column sticky-column">
-
+            
         </div>
         <div id="note-column" class="column sticky-column">
             <!-- Searchbar -->
@@ -42,10 +42,22 @@
         </div>
     </div>
 
+    <!-- Util -->
+    <script src="/project01/scripts/utilities/util.js"></script>
+    <!-- Handlebars -->
     <script src="/project01/lib/handlebars.min-v4.7.2.js"></script>
+    <!-- Quill -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="/project01/lib/quill-markdown.js"></script>
-    <script src="/project01/scripts/util.js"></script>
+    <!-- Redux -->
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.js"></script>
+    <script src="/project01/scripts/actions/fetchAPI.js"></script>
+    <script src="/project01/scripts/actions/fetchTemplates.js"></script>
+    <script src="/project01/scripts/actions/actions.js"></script>
+    <script src="/project01/scripts/store/store.js"></script>
+    <!-- Custom JS -->
+    <script src="/project01/scripts/observers/folderColumnObserver.js"></script>
     <script src="/project01/scripts/index.js"></script>
 </body>
 
