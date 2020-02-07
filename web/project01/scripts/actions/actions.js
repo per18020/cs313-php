@@ -36,10 +36,10 @@ function getAllFoldersResponse(response) {
     return { type: GET_ALL_FOLDERS_RESPONSE, response };
 }
 
-function getAllFolders() {
+function getAllFolders(id) {
     return (dispatch) => {
         dispatch(getAllFoldersRequest());
-        return fetchAllFolders()
+        return fetchAllFolders(id)
             .then((res) => { return res.json() })
             .then((res) => {
                 dispatch(getAllFoldersResponse(res));

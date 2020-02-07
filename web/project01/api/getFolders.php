@@ -29,13 +29,13 @@
     $foldersPDO = $db->prepare("SELECT * FROM public.folder WHERE user_id = $user_id");
     $foldersPDO->execute();
     
-    // while ($fRow = $foldersPDO->fetch(PDO::FETCH_ASSOC)) {
-    //     $folder = new stdClass();
-    //     $folder->id = $fRow["id"];
-    //     $folder->title = $fRow["title"];
+    while ($fRow = $foldersPDO->fetch(PDO::FETCH_ASSOC)) {
+        $folder = new stdClass();
+        $folder->id = $fRow["id"];
+        $folder->title = $fRow["title"];
 
-    //     array_push($response->folders, $folder);
-    // }
-    
+        array_push($response->folders, $folder);
+    }
+
     echo json_encode($response);
 ?>

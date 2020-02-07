@@ -37,4 +37,4 @@ const quill = new Quill('#editor', {
 const folderColumnObserver = new FolderColumnObserver(store);
 
 store.dispatch(getUser(1));
-store.dispatch(getAllFolders());
+store.dispatch(getAllFolders(1));
