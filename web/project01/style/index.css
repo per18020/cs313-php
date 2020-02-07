@@ -58,6 +58,7 @@ body {
     color: #f8f8f8;
     flex: none;
     width: 200px;
+    user-select: none;
 }
 
 .collection-column-header {
@@ -78,6 +79,10 @@ body {
 .collection-column-item:hover {
     cursor: pointer;
     background-color: #2d3644;
+}
+
+.collection-column-item.is-active {
+    background-color: #00d1b2;
 }
 
 .collection-column-item-title {
