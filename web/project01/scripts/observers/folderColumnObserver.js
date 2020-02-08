@@ -15,4 +15,16 @@ class FolderColumnObserver {
             selectedFolder: getSelectedFolderState()
         });
     }
+
+    removeEventListeners() {
+        let buttons = document.getElementsByClassName('collection-button');
+        for (let i = 0; i < buttons.length; i++) {
+            let button = buttons[i];
+            button.getAttribute('folder-id');
+        }
+    }
+
+    addEventListeners() {
+
+    }
 }

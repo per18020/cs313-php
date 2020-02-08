@@ -10,7 +10,7 @@ const rootReducer = Redux.combineReducers({
 //     Redux.applyMiddleware(ReduxThunk.default)
 // ));
 
-const store = Redux.createStore(rootReducer, Redux.applyMiddleware(ReduxThunk.default));
+const store = Redux.createStore(rootReducer, Redux.applyMiddleware(createThunkMiddleware()));
 
 function getUserState() {
     return store.getState().userReducer.user;

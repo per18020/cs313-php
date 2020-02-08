@@ -49,11 +49,11 @@
     <script src="/project01/scripts/build/templates.js"></script>
     <script src="/project01/scripts/utilities/handlebarsHelpers.js"></script>
     <!-- Quill -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="/project01/lib/quill.min.js"></script>
     <script src="/project01/lib/quill-markdown.js"></script>
     <!-- Redux -->
-    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.js"></script>
+    <script src="/project01/lib/redux.min.js"></script>  
+    <script src="/project01/lib/redux-thunk.js"></script>
     <script src="/project01/scripts/actions/fetchAPI.js"></script>
     <script src="/project01/scripts/actions/actions.js"></script>
     <script src="/project01/scripts/reducers/reducers.js"></script>
