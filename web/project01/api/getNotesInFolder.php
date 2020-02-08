@@ -2,7 +2,8 @@
     error_reporting(0); // Turn off error reporting. I'll handle my own errors with json
 
     $input = json_decode(file_get_contents('php://input'));
-    $folder_id = htmlspecialchars($input->id);
+    $user_id = htmlspecialchars($input->user_id);
+    $folder_id = htmlspecialchars($input->folder_id);
 
     $response = new stdClass();
     $response->notes = [];
@@ -37,7 +38,7 @@
         exit;
     }
 
-    $usersPDO = $db->prepare("SELECT * FROM public.note WHERE folder_id = $folder_id");
+    $usersPDO = $db->prepare("SELECT * FROM public.note WHERE folder_id = $folder_id AND use_id = $user_id");
     $usersPDO->execute();
     
     while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {

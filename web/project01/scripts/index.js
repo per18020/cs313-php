@@ -38,6 +38,15 @@ const folderColumnObserver = new FolderColumnObserver(store);
 const noteColumnObserver = new NoteColumnObserver(store);
 const quillObserver = new QuillObserver(store, quill);
 
-store.dispatch(getUser(1));
-store.dispatch(getAllFolders(1));
-store.dispatch(getAllNotes(1));
+let user_id = 1;
+
+console.time("load");
+Promise.all([
+    store.dispatch(initLastSelectedNote(user_id)),
+    store.dispatch(getUser(user_id)),
+    store.dispatch(getAllFolders(user_id)),
+    store.dispatch(getAllNotes(user_id))
+]).then(() => {
+    console.timeEnd("load");
+})
+

@@ -40,7 +40,7 @@ const folderReducer = (state = folderDefaultState, action) => {
               })
         case SELECT_FOLDER:
             return Object.assign({}, state, {
-                selectedFolder: action.id
+                selectedFolder: action.folder_id
             })
         default: return state;
     }
@@ -50,7 +50,8 @@ const noteDefaultState = {
     fetching: false,
     fetched: false,
     notes: [],
-    selectedNote: 1
+    selectedNote: 1,
+    lastSelectedNotes: []
 }
 
 const noteReducer = (state = noteDefaultState, action) => {
@@ -75,6 +76,10 @@ const noteReducer = (state = noteDefaultState, action) => {
                 fetched: true,
                 notes: action.response.notes,
                 selectedNote: 1
+            });
+        case INIT_LAST_SELECTED_NOTE:
+            return Object.assign({}, state, {
+                lastSelectedNotes: action.payload
             });
         default: return state;
     }

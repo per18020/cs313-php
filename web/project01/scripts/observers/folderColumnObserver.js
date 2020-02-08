@@ -20,12 +20,13 @@ class FolderColumnObserver {
         });
     }
 
-    handleFolderButtonClick(id) {
-        this.store.dispatch(selectFolder(id));
-        if (id == 0) {
-            this.store.dispatch(getAllNotes(getUserState().id));
+    handleFolderButtonClick(folder_id) {
+        let user_id = getUserState().id;
+        this.store.dispatch(selectFolder(folder_id));
+        if (folder_id == 0) {
+            this.store.dispatch(getAllNotes(user_id));
         } else {
-            this.store.dispatch(getNotesInFolder(id));
+            this.store.dispatch(getNotesInFolder(user_id, folder_id));
         }
     }
 
@@ -33,8 +34,8 @@ class FolderColumnObserver {
         let buttons = document.getElementsByClassName('collection-button');
         for (let i = 0; i < buttons.length; i++) {
             let button = buttons[i];
-            let id = button.getAttribute('folder-id');
-            addUniqueTrackedListener(button, 'onclick', this.handleFolderButtonClick.bind(this, id));
+            let folder_id = button.getAttribute('folder-id');
+            addUniqueTrackedListener(button, 'onclick', this.handleFolderButtonClick.bind(this, folder_id));
         }
     }
 }

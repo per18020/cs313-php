@@ -29,7 +29,8 @@ function getNotesState() {
 }
 
 function getSelectedNoteState() {
-    let selectedNoteID = store.getState().noteReducer.selectedNote;
+    let selectedFolderID = getSelectedFolderState();
+    let selectedNoteID = store.getState().noteReducer.lastSelectedNotes[selectedFolderID];
     return store.getState().noteReducer.notes.find((note) => {
         return note.id == selectedNoteID;
     });
