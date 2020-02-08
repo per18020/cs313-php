@@ -50,7 +50,7 @@ const noteDefaultState = {
     fetching: false,
     fetched: false,
     notes: [],
-    selectedNote: 0
+    selectedNote: 1
 }
 
 const noteReducer = (state = noteDefaultState, action) => {
@@ -63,7 +63,7 @@ const noteReducer = (state = noteDefaultState, action) => {
                 fetching: false,
                 fetched: true,
                 notes: action.response.notes,
-                selectedNote: 0
+                selectedNote: 1
             };
         case GET_NOTES_IN_FOLDER_REQUEST: 
             return Object.assign({}, state, {
@@ -74,7 +74,7 @@ const noteReducer = (state = noteDefaultState, action) => {
                 fetching: false,
                 fetched: true,
                 notes: action.response.notes,
-                selectedNote: 0
+                selectedNote: 1
             });
         default: return state;
     }

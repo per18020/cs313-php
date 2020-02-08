@@ -23,7 +23,7 @@
     } catch (Exception $e) {
         // Default note to work without a database // Delete after testing!
         $note = new stdClass();
-        $note->id = 0;
+        $note->id = 1;
         $note->folder_id = 0;
         $note->title = "Title";
         $note->creation = "Creation";
