@@ -9,6 +9,9 @@ const SELECT_FOLDER = "SELECT_FOLDER";
 const GET_ALL_NOTES_REQUEST = "GET_ALL_NOTES_REQUEST";
 const GET_ALL_NOTES_RESPONSE = "GET_ALL_NOTES_RESPONSE";
 
+const GET_NOTES_IN_FOLDER_REQUEST = "GET_NOTES_IN_FOLDER_REQUEST";
+const GET_NOTES_IN_FOLDER_RESPONSE = "GET_NOTES_IN_FOLDER_RESPONSE";
+
 // const SELECT_NOTE = "SELECT_NOTE";
 
 function getUserRequest() {
@@ -68,6 +71,25 @@ function getAllNotes(id) {
             .then((res) => { return res.json() })
             .then((res) => {
                 dispatch(getAllNotesResponse(res));
+            });
+    }
+}
+
+function getNotesInFolderRequest() {
+    return { type: GET_NOTES_IN_FOLDER_REQUEST };
+}
+
+function getNotesInFolderResponse(response) {
+    return { type: GET_NOTES_IN_FOLDER_RESPONSE, response };
+}
+
+function getNotesInFolder(id) {
+    return (dispatch) => {
+        dispatch(getNotesInFolderRequest());
+        return fetchNotesInFolder(id)
+            .then((res) => { return res.json() })
+            .then((res) => {
+                dispatch(getNotesInFolderResponse(res));
             });
     }
 }

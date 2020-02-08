@@ -63,6 +63,16 @@ const noteReducer = (state = noteDefaultState, action) => {
                 fetched: true,
                 notes: action.response.notes
             };
+        case GET_NOTES_IN_FOLDER_REQUEST: 
+            return Object.assign({}, state, {
+                fetching: true
+            });
+        case GET_NOTES_IN_FOLDER_RESPONSE:
+            return Object.assign({}, state, {
+                fetching: false,
+                fetched: true,
+                notes: action.response.notes
+            });
         default: return state;
     }
 } 

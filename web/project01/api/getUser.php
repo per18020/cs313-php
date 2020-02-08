@@ -5,6 +5,7 @@
     $user_id = htmlspecialchars($input->id);
 
     $response = new stdClass();
+    $response->id = $user_id;
     $response->email = "email";
     $response->username = "username";
     $response->error = false;
