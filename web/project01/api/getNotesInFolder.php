@@ -38,7 +38,7 @@
         exit;
     }
 
-    $usersPDO = $db->prepare("SELECT * FROM public.note WHERE folder_id = $folder_id AND use_id = $user_id");
+    $usersPDO = $db->prepare("SELECT * FROM public.note WHERE folder_id = $folder_id AND user_id = $user_id");
     $usersPDO->execute();
     
     while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {
