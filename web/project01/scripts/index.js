@@ -35,6 +35,8 @@ const quill = new Quill('#editor', {
 });
 
 const folderColumnObserver = new FolderColumnObserver(store);
+const noteColumnObserver = new NoteColumnObserver(store);
 
 store.dispatch(getUser(1));
 store.dispatch(getAllFolders(1));
+store.dispatch(getAllNotes(1));

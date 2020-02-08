@@ -1,4 +1,4 @@
-class FolderColumnObserver {
+class NoteColumnObserver {
     constructor(store) {
         this.store = store;
         this.init();
@@ -9,10 +9,8 @@ class FolderColumnObserver {
     }
 
     handleChange() {
-        buildFolderColumn({
-            folders: getFoldersState(),
-            username: getUserState().username,
-            selectedFolder: getSelectedFolderState()
+        buildNoteColumn({
+            notes: getNotesState()
         });
     }
 }

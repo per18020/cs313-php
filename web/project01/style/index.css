@@ -53,7 +53,7 @@ body {
 
 /* Individual column styling */
 
-#collection-column {
+#collection-column-target {
     background-color: #262d38;
     color: #f8f8f8;
     flex: none;
