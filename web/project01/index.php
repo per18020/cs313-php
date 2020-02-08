@@ -55,7 +55,9 @@
     <script src="/project01/lib/redux.min.js"></script>  
     <script src="/project01/lib/redux-thunk.js"></script>
     <script src="/project01/scripts/actions/fetchAPI.js"></script>
-    <script src="/project01/scripts/actions/actions.js"></script>
+    <script src="/project01/scripts/actions/userActions.js"></script>
+    <script src="/project01/scripts/actions/folderActions.js"></script>
+    <script src="/project01/scripts/actions/noteActions.js"></script>
     <script src="/project01/scripts/reducers/reducers.js"></script>
     <script src="/project01/scripts/store/store.js"></script>
     <!-- Custom JS -->
