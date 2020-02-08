@@ -4,13 +4,13 @@ const rootReducer = Redux.combineReducers({
     noteReducer
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || Redux.compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || Redux.compose;
 
-const store = Redux.createStore(rootReducer, composeEnhancers(
-    Redux.applyMiddleware(createThunkMiddleware())
-));
+// const store = Redux.createStore(rootReducer, composeEnhancers(
+//     Redux.applyMiddleware(createThunkMiddleware())
+// ));
 
-// const store = Redux.createStore(rootReducer, Redux.applyMiddleware(createThunkMiddleware()));
+const store = Redux.createStore(rootReducer, Redux.applyMiddleware(createThunkMiddleware()));
 
 function getUserState() {
     return store.getState().userReducer.user;
@@ -26,4 +26,11 @@ function getSelectedFolderState() {
 
 function getNotesState() {
     return store.getState().noteReducer.notes;
+}
+
+function getSelectedNoteState() {
+    let selectedNoteID = store.getState().noteReducer.selectedNote;
+    return store.getState().noteReducer.notes.find((note) => {
+        return note.id == selectedNoteID;
+    });
 }

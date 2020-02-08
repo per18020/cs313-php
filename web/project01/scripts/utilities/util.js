@@ -9,13 +9,11 @@ async function postData(url = '', data = {}) {
   return response;
 }
 
-
 // Modified from https://www.jimmycuadra.com/posts/keeping-track-of-javascript-event-handlers/
 function addUniqueTrackedListener(element, type, handler) {
   if (!element.trackedEvents) {
     element.trackedEvents = {};
   }
-
   if (!element.trackedEvents[type]) {
     element.trackedEvents[type] = [];
 
@@ -23,6 +21,9 @@ function addUniqueTrackedListener(element, type, handler) {
       element.trackedEvents[type]();
     };
   }
-
   element.trackedEvents[type] = handler;
 };
+
+function formatJSONString(jsonString) {
+  return jsonString.replace(/[\r]?[\n]/g,'\\n');
+}

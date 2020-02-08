@@ -49,7 +49,8 @@ const folderReducer = (state = folderDefaultState, action) => {
 const noteDefaultState = {
     fetching: false,
     fetched: false,
-    notes: []
+    notes: [],
+    selectedNote: 0
 }
 
 const noteReducer = (state = noteDefaultState, action) => {
@@ -61,7 +62,8 @@ const noteReducer = (state = noteDefaultState, action) => {
                 ...state,
                 fetching: false,
                 fetched: true,
-                notes: action.response.notes
+                notes: action.response.notes,
+                selectedNote: 0
             };
         case GET_NOTES_IN_FOLDER_REQUEST: 
             return Object.assign({}, state, {
@@ -71,7 +73,8 @@ const noteReducer = (state = noteDefaultState, action) => {
             return Object.assign({}, state, {
                 fetching: false,
                 fetched: true,
-                notes: action.response.notes
+                notes: action.response.notes,
+                selectedNote: 0
             });
         default: return state;
     }

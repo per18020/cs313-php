@@ -61,6 +61,7 @@
     <!-- Custom JS -->
     <script src="/project01/scripts/observers/folderColumnObserver.js"></script>
     <script src="/project01/scripts/observers/noteColumnObserver.js"></script>
+    <script src="/project01/scripts/observers/quillObserver.js"></script>
     <script src="/project01/scripts/index.js"></script>
 </body>
 
