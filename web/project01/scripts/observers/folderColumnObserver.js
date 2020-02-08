@@ -21,12 +21,12 @@ class FolderColumnObserver {
     }
 
     handleFolderButtonClick(id) {
+        this.store.dispatch(selectFolder(id));
         if (id == 0) {
             this.store.dispatch(getAllNotes(getUserState().id));
         } else {
             this.store.dispatch(getNotesInFolder(id));
         }
-        this.store.dispatch(selectFolder(id));
     }
 
     buildEventListeners() {
