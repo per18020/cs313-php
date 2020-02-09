@@ -22,11 +22,11 @@
         require "dbConnect.php";
         $db = get_db();
     } catch (Exception $e) {
-        if ($folder_id != 0) {
+        if ($folder_id == 1) {
             // Default note to work without a database // Delete after testing!
             $note = new stdClass();
             $note->id = 1;
-            $note->folder_id = 0;
+            $note->folder_id = 1;
             $note->title = "Wow! A new one!";
             $note->creation = "Creation";
             $note->last_edited = "Last_Edited";
