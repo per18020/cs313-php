@@ -10,6 +10,9 @@
     $response->authenticated = false;
     $response->user = new stdClass();
 
+    $email = "thefloatingtree@gmail.com";
+    $password = "oatmeal";
+
     $db = NULL;
 
     // necessary to catch errors thrown from other requried files
@@ -31,12 +34,12 @@
     $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email = $email AND password = $password");
     $usersPDO->execute();
     
-    // while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {
-    //     $response->user->id = $row["id"];
-    //     $response->user->email = $row["email"];
-    //     $response->user->username = $row["username"];
-    //     $response->authenticated = true;
-    // }
+    while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {
+        $response->user->id = $row["id"];
+        $response->user->email = $row["email"];
+        $response->user->username = $row["username"];
+        $response->authenticated = true;
+    }
 
     echo json_encode($response);
 ?>
