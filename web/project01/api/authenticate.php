@@ -1,5 +1,5 @@
 <?php
-    // error_reporting(0); // Turn off error reporting. I'll handle my own errors with json
+    error_reporting(0); // Turn off error reporting. I'll handle my own errors with json
 
     $input = json_decode(file_get_contents('php://input'));
     $email = htmlspecialchars($input->email);
@@ -9,9 +9,6 @@
     $response->error = false;
     $response->authenticated = false;
     $response->user = new stdClass();
-
-    $email = "thefloatingtree@gmail.com";
-    $password = "oatmeal";
 
     $db = NULL;
 
