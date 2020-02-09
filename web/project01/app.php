@@ -2,6 +2,11 @@
 
 session_start();
 
+if (!isset($_SESSION["isAuthenticated"])) {
+    header("Location:login.php");
+}
+
+
 ?>
 
 <!DOCTYPE html>

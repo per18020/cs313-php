@@ -1,4 +1,7 @@
 <?php
+
+    session_start();
+
     error_reporting(0); // Turn off error reporting. I'll handle my own errors with json
 
     $input = json_decode(file_get_contents('php://input'));
@@ -40,5 +43,8 @@
         $response->authenticated = true;
     }
 
+    if ($response->authenticated) {
+        $_SESSION["isAuthenticated"] = json_encode($response);
+    }
     echo json_encode($response);
 ?>

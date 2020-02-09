@@ -2,7 +2,9 @@
 
 session_start();
 
-
+if (isset($_SESSION["isAuthenticated"])) {
+    header("Location:app.php");
+}
 
 ?>
 
