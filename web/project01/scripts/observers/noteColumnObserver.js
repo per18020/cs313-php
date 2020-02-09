@@ -10,7 +10,7 @@ class NoteColumnObserver {
 
     handleChange() {
         buildNoteColumn({
-            notes: getNotesState()
+            notes: getNotesInSelectedFolderState()
         });
     }
 }

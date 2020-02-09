@@ -27,14 +27,14 @@ class FolderColumnObserver {
             this.store.dispatch(getAllNotes(user_id));
         } else {
             this.store.dispatch(getNotesInFolder(user_id, folder_id));
-        }
+        }   
     }
 
     buildEventListeners() {
         let buttons = document.getElementsByClassName('collection-button');
         for (let i = 0; i < buttons.length; i++) {
             let button = buttons[i];
-            let folder_id = button.getAttribute('folder-id');
+            let folder_id = parseInt(button.getAttribute('folder-id'));
             addUniqueTrackedListener(button, 'onclick', this.handleFolderButtonClick.bind(this, folder_id));
         }
     }

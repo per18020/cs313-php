@@ -42,7 +42,6 @@ let user_id = 1;
 
 console.time("load");
 Promise.all([
-    store.dispatch(initLastSelectedNote(user_id)),
     store.dispatch(getUser(user_id)),
     store.dispatch(getAllFolders(user_id)),
     store.dispatch(getAllNotes(user_id))

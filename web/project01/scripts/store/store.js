@@ -24,14 +24,15 @@ function getSelectedFolderState() {
     return store.getState().folderReducer.selectedFolder;
 }
 
-function getNotesState() {
-    return store.getState().noteReducer.notes;
+function getNotesInSelectedFolderState() {
+    let folder_id = getSelectedFolderState();
+    return store.getState().noteReducer.folders.get(folder_id);
 }
 
 function getSelectedNoteState() {
-    let selectedFolderID = getSelectedFolderState();
-    let selectedNoteID = store.getState().noteReducer.lastSelectedNotes[selectedFolderID];
-    return store.getState().noteReducer.notes.find((note) => {
-        return note.id == selectedNoteID;
-    });
+    let notes = getNotesInSelectedFolderState();
+    if (!notes) return;
+    return notes.find((note) => {
+        return note.selected;
+    })?.note;
 }

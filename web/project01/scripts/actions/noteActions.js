@@ -4,16 +4,27 @@ const GET_ALL_NOTES_RESPONSE = "GET_ALL_NOTES_RESPONSE";
 const GET_NOTES_IN_FOLDER_REQUEST = "GET_NOTES_IN_FOLDER_REQUEST";
 const GET_NOTES_IN_FOLDER_RESPONSE = "GET_NOTES_IN_FOLDER_RESPONSE";
 
-const INIT_LAST_SELECTED_NOTE = "INIT_LAST_SELECTED_NOTE";
-
 // const SELECT_NOTE = "SELECT_NOTE";
 
 function getAllNotesRequest() {
     return { type: GET_ALL_NOTES_REQUEST };
 }
 
-function getAllNotesResponse(response) {
-    return { type: GET_ALL_NOTES_RESPONSE, response };
+function getAllNotesResponse(folder_id, notes) {
+    let formattedNotes = [];
+    for (let i = 0; i < notes.length; i++) {
+        formattedNotes.push({
+            selected: (i == 0), // First in the list is selected by default
+            note: notes[i]
+        });
+    }
+    return {
+        type: GET_ALL_NOTES_RESPONSE,
+        payload: {
+            folder_id: folder_id,
+            value: formattedNotes
+        }
+    };
 }
 
 function getAllNotes(user_id) {
@@ -22,7 +33,8 @@ function getAllNotes(user_id) {
         return fetchAllNotes(user_id)
             .then((res) => { return res.json() })
             .then((res) => {
-                dispatch(getAllNotesResponse(res));
+
+                dispatch(getAllNotesResponse(0, res.notes));
             });
     }
 }
@@ -41,23 +53,7 @@ function getNotesInFolder(user_id, folder_id) {
         return fetchNotesInFolder(user_id, folder_id)
             .then((res) => { return res.json() })
             .then((res) => {
-                dispatch(getNotesInFolderResponse(res));
-            });
-    }
-}
-
-function initLastSelectedNote(user_id) {
-    return (dispatch) => {
-        return fetchAllFolders(user_id)
-            .then((res) => { return res.json() })
-            .then((res) => {
-                let lookup = [];
-                lookup[-1] = 1; // Trash
-                lookup[0] = 1; // All Notes
-                for (let i = 0; i < res.folders.length; i++) {
-                    lookup[res.folders[i].id] = 1;
-                }
-                dispatch({type: INIT_LAST_SELECTED_NOTE, payload: lookup });
+                dispatch(getAllNotesResponse(folder_id, res.notes));
             });
     }
 }

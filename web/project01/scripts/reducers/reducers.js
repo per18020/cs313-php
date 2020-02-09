@@ -7,10 +7,10 @@ const userDefaultState = {
 const userReducer = (state = userDefaultState, action) => {
     switch (action.type) {
         case GET_USER_REQUEST:
-            return {...state, fetching: true};
+            return { ...state, fetching: true };
         case GET_USER_RESPONSE:
             return {
-                ...state, 
+                ...state,
                 fetching: false,
                 fetched: true,
                 user: action.response
@@ -27,7 +27,7 @@ const folderDefaultState = {
 }
 
 const folderReducer = (state = folderDefaultState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case GET_ALL_FOLDERS_REQUEST:
             return Object.assign({}, state, {
                 fetching: true
@@ -37,50 +37,44 @@ const folderReducer = (state = folderDefaultState, action) => {
                 fetching: false,
                 fetched: true,
                 folders: action.response.folders,
-              })
+            })
         case SELECT_FOLDER:
             return Object.assign({}, state, {
-                selectedFolder: action.folder_id
+                selectedFolder: parseInt(action.folder_id)
             })
         default: return state;
     }
-} 
+}
 
 const noteDefaultState = {
     fetching: false,
     fetched: false,
-    notes: [],
-    selectedNote: 1,
-    lastSelectedNotes: []
+    folders: Immutable.Map()
 }
 
+// folders: 
+// { -- Dict addresed by folder_id
+//     [ -- List of notes in that folder
+//         { -- Object that contains the note and whether or not it's selected
+//             note: {},
+//             selected: false
+//         }
+//     ]
+// }
+
 const noteReducer = (state = noteDefaultState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case GET_ALL_NOTES_REQUEST:
-            return {...state, fetching: true};
+            return { ...state, fetching: true };
+        case GET_NOTES_IN_FOLDER_REQUEST:
+            return { ...state, fetching: true };
         case GET_ALL_NOTES_RESPONSE:
             return {
                 ...state,
                 fetching: false,
                 fetched: true,
-                notes: action.response.notes,
-                selectedNote: 1
+                folders: state.folders.set(parseInt(action.payload.folder_id), action.payload.value)
             };
-        case GET_NOTES_IN_FOLDER_REQUEST: 
-            return Object.assign({}, state, {
-                fetching: true
-            });
-        case GET_NOTES_IN_FOLDER_RESPONSE:
-            return Object.assign({}, state, {
-                fetching: false,
-                fetched: true,
-                notes: action.response.notes,
-                selectedNote: 1
-            });
-        case INIT_LAST_SELECTED_NOTE:
-            return Object.assign({}, state, {
-                lastSelectedNotes: action.payload
-            });
         default: return state;
     }
 } 
