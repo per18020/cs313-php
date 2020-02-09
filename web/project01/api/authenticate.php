@@ -31,10 +31,8 @@
         exit;
     }
 
-    var_dump($db);
-
-    // $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email = $email AND password = $password");
-    // $usersPDO->execute();
+    $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email = $email AND password = $password");
+    $usersPDO->execute();
     
     // while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {
     //     $response->user->id = $row["id"];
