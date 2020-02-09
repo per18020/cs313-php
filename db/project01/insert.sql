@@ -1,26 +1,26 @@
 -- User Table
 
-INSERT INTO public.user (email, username, password) VALUES ('thefloatingtree@gmail.com', 'thefloatingtree', 'oatmeal');
+INSERT INTO public.user (email, username, password) VALUES ('per18020@byui.edu', 'per18020', 'oatmeal');
 
 -- Folder Table
 
 INSERT INTO public.folder (user_id, title) VALUES (
-    (SELECT id FROM public.user WHERE email = 'thefloatingtree@gmail.com'),
+    (SELECT id FROM public.user WHERE email = 'per18020@byui.edu'),
     'ziggy'
 );
 INSERT INTO public.folder (user_id, title) VALUES (
-    (SELECT id FROM public.user WHERE email = 'thefloatingtree@gmail.com'),
-    'zaggy'
+    (SELECT id FROM public.user WHERE email = 'per18020@byui.edu'),
+    'twiggy'
 );
 INSERT INTO public.folder (user_id, title) VALUES (
-    (SELECT id FROM public.user WHERE email = 'thefloatingtree@gmail.com'),
-    'twiggy'
+    (SELECT id FROM public.user WHERE email = 'per18020@byui.edu'),
+    'twaggy'
 );
 
 -- Notes Table
 
 INSERT INTO public.note (user_id, folder_id, title, creation, last_edited, data) VALUES (
-    (SELECT id FROM public.user WHERE email = 'thefloatingtree@gmail.com'),
+    (SELECT id FROM public.user WHERE email = 'per18020@byui.edu'),
     (SELECT id FROM public.folder WHERE title = 'ziggy'),
     'Test Note 1',
     NOW(),
@@ -29,7 +29,7 @@ INSERT INTO public.note (user_id, folder_id, title, creation, last_edited, data)
 );
 
 INSERT INTO public.note (user_id, folder_id, title, creation, last_edited, data) VALUES (
-    (SELECT id FROM public.user WHERE email = 'thefloatingtree@gmail.com'),
+    (SELECT id FROM public.user WHERE email = 'per18020@byui.edu'),
     (SELECT id FROM public.folder WHERE title = 'ziggy'),
     'Test Note 2',
     NOW(),
@@ -38,7 +38,7 @@ INSERT INTO public.note (user_id, folder_id, title, creation, last_edited, data)
 );
 
 INSERT INTO public.note (user_id, folder_id, title, creation, last_edited, data) VALUES (
-    (SELECT id FROM public.user WHERE email = 'thefloatingtree@gmail.com'),
+    (SELECT id FROM public.user WHERE email = 'per18020@byui.edu'),
     (SELECT id FROM public.folder WHERE title = 'twiggy'),
     'Test Note 3',
     NOW(),
