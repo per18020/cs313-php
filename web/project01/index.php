@@ -51,6 +51,8 @@
     <!-- Quill -->
     <script src="/project01/lib/quill.min.js"></script>
     <script src="/project01/lib/quill-markdown.js"></script>
+    <!-- Immutable -->
+    <script src="/project01/lib/immutable.min.js"></script>
     <!-- Redux -->
     <script src="/project01/lib/redux.min.js"></script>  
     <script src="/project01/lib/redux-thunk.js"></script>
