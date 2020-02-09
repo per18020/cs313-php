@@ -21,15 +21,15 @@
     }
     set_error_handler("exception_error_handler");
 
-    // // if db doesn't exist
-    // try {
-    //     require "dbConnect.php";
-    //     $db = get_db();
-    // } catch (Exception $e) {
-    //     $response->error = true;
-    //     echo json_encode($response);
-    //     exit;
-    // }
+    // if db doesn't exist
+    try {
+        require "dbConnect.php";
+        $db = get_db();
+    } catch (Exception $e) {
+        $response->error = true;
+        echo json_encode($response);
+        exit;
+    }
 
     // $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email = $email AND password = $password");
     // $usersPDO->execute();
