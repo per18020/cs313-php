@@ -1,3 +1,9 @@
+<?php 
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +17,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="/project01/style/index.css">
+    <link rel="stylesheet" href="/project01/style/app.css">
     <link rel="stylesheet" href="/project01/style/editor.css">
 </head>
 
@@ -66,7 +72,7 @@
     <script src="/project01/scripts/observers/folderColumnObserver.js"></script>
     <script src="/project01/scripts/observers/noteColumnObserver.js"></script>
     <script src="/project01/scripts/observers/quillObserver.js"></script>
-    <script src="/project01/scripts/index.js"></script>
+    <script src="/project01/scripts/app.js"></script>
 </body>
 
 </html>
