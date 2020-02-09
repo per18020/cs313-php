@@ -31,7 +31,7 @@
         exit;
     }
 
-    $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email = $email AND password = $password");
+    $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email = \'$email\' AND password = \'$password\'");
     $usersPDO->execute();
     
     // while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {
