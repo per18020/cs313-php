@@ -21,6 +21,7 @@ if (isset($_SESSION["isAuthenticated"])) {
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
     <link rel="stylesheet" href="/project01/style/login.css">
+    <link rel="stylesheet" href="/project01/style/toast.css">
 </head>
 
 <body>
@@ -62,6 +63,8 @@ if (isset($_SESSION["isAuthenticated"])) {
             </div>
         </div>
     </section>
+
+    <div id="error" class="notification is-danger"></div>
 
     <script src="/project01/scripts/utilities/util.js"></script>
     <script src="/project01/scripts/login.js"></script>
