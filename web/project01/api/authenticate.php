@@ -31,6 +31,8 @@
         exit;
     }
 
+    var_dump($db);
+
     // $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email = $email AND password = $password");
     // $usersPDO->execute();
     
