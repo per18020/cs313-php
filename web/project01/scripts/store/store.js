@@ -32,7 +32,8 @@ function getNotesInSelectedFolderState() {
 function getSelectedNoteState() {
     let notes = getNotesInSelectedFolderState();
     if (!notes) return;
-    return notes.find((note) => {
+    let noteObj = notes.find((note) => {
         return note.selected;
-    })?.note;
+    });
+    return noteObj ? noteObj.note : noteObj;
 }
