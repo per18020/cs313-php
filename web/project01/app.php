@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -23,32 +23,46 @@ if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
 
     <link rel="stylesheet" href="/project01/style/app.css">
     <link rel="stylesheet" href="/project01/style/editor.css">
+    <link rel="stylesheet" href="/project01/style/spinner.css">
 </head>
 
 <body>
-    <div class="columns">
-        <div id="collection-column-target" class="column sticky-column">
-            
-        </div>
-        <div id="note-column" class="column sticky-column">
-            <!-- Searchbar -->
-            <div class="field is-grouped">
-                <div class="control is-expanded">
-                    <input class="input" type="text" placeholder="Search Notes">
-                </div>
-                <div class="control">
-                    <button class="button is-primary">
-                        <span class="icon is-small">
-                            <i class="far fa-sticky-note"></i>
-                        </span>
-                    </button>
+    <div id="app-loader">
+        <section class="hero is-primary is-fullheight">
+            <div class="hero-body">
+                <div class="container">
+                    <p class="title">
+                        <div class="loader">Loading...</div>
+                    </p>
                 </div>
             </div>
-            <div id="note-column-target"></div>
-        </div>
+        </section>
+    </div>
+    <div id="app">
+        <div class="columns">
+            <div id="collection-column-target" class="column sticky-column">
 
-        <div class="scrolling-container">
-            <div id="editor"></div>
+            </div>
+            <div id="note-column" class="column sticky-column">
+                <!-- Searchbar -->
+                <div class="field is-grouped">
+                    <div class="control is-expanded">
+                        <input class="input" type="text" placeholder="Search Notes">
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary">
+                            <span class="icon is-small">
+                                <i class="far fa-sticky-note"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div id="note-column-target"></div>
+            </div>
+
+            <div class="scrolling-container">
+                <div id="editor"></div>
+            </div>
         </div>
     </div>
 
@@ -64,7 +78,7 @@ if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
     <!-- Immutable -->
     <script src="/project01/lib/immutable.min.js"></script>
     <!-- Redux -->
-    <script src="/project01/lib/redux.min.js"></script>  
+    <script src="/project01/lib/redux.min.js"></script>
     <script src="/project01/lib/redux-thunk.js"></script>
     <script src="/project01/scripts/actions/fetchAPI.js"></script>
     <script src="/project01/scripts/actions/userActions.js"></script>

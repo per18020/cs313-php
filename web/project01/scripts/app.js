@@ -47,5 +47,7 @@ Promise.all([
     store.dispatch(getAllNotes(user_id))
 ]).then(() => {
     console.timeEnd("load");
+
+    document.getElementById("app-loader").style.display = "none";
 })
 

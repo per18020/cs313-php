@@ -49,7 +49,9 @@ const folderReducer = (state = folderDefaultState, action) => {
 const noteDefaultState = {
     fetching: false,
     fetched: false,
-    folders: Immutable.Map()
+    filtered: false,
+    folders: Immutable.Map(),
+    filteredFolders: Immutable.Map()
 }
 
 // folders: 

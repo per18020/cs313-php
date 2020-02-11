@@ -7,6 +7,12 @@ body {
     margin: 0;
     height: 100vh;
     color: #262d38;
+    background-color: #f8f8f8;
+}
+
+.hero {
+    width: 100vw;
+    height: 100vh;
 }
 
 /* Edit bulma classes to make them do what I want them to do */
