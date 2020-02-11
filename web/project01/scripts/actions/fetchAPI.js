@@ -13,3 +13,7 @@ function fetchAllNotes(user_id) {
 function fetchNotesInFolder(user_id, folder_id) {
     return postData("/project01/api/getNotesInFolder.php", { user_id, folder_id });
 }
+
+function signOutCurrentUser() {
+    postData("/project01/api/signOut.php");
+}

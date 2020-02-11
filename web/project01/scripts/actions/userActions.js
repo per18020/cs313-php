@@ -1,6 +1,8 @@
 const GET_USER_REQUEST = "GET_USER_REQUEST";
 const GET_USER_RESPONSE = "GET_USER_RESPONSE";
 
+const SIGN_OUT_USER = "SIGN_OUT_USER";
+
 function getUserRequest() {
     return { type: GET_USER_REQUEST };
 }

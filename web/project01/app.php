@@ -2,10 +2,9 @@
 
 session_start();
 
-if (!isset($_SESSION["isAuthenticated"])) {
+if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
     header("Location:login.php");
 }
-
 
 ?>
 

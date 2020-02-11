@@ -59,6 +59,7 @@ body {
     flex: none;
     width: 200px;
     user-select: none;
+    overflow: unset;
 }
 
 .collection-column-header {
@@ -102,6 +103,26 @@ body {
 .icon-background {
     color: #3a4558;
     visibility: hidden;
+}
+
+.dropdown-menu {
+    padding-top: 0;
+}
+
+.dropdown-trigger:hover {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    width: 174px;
+    /* border-top-left-radius: 0;
+    border-top-right-radius: 0; */
+    margin: 12px;
+    /* background-color: #262d38; */
+}
+
+a.dropdown-item, button.dropdown-item {
+    padding-right: 1rem;
 }
 
 #note-column {

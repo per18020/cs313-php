@@ -15,10 +15,8 @@ function addUniqueTrackedListener(element, type, handler) {
     element.trackedEvents = {};
   }
   if (!element.trackedEvents[type]) {
-    element.trackedEvents[type] = [];
-
     element[type] = function () {
-      element.trackedEvents[type]();
+      element.trackedEvents[type](event);
     };
   }
   element.trackedEvents[type] = handler;

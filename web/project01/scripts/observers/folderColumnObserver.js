@@ -27,7 +27,26 @@ class FolderColumnObserver {
             this.store.dispatch(getAllNotes(user_id));
         } else {
             this.store.dispatch(getNotesInFolder(user_id, folder_id));
-        }   
+        }
+    }
+
+    handleUserButtonClick(dropdown) {
+        if (dropdown.classList.contains("is-active")) {
+            dropdown.classList.remove("is-active");
+        } else {
+            dropdown.classList.add("is-active");
+        }
+    }
+
+    handleDocumentClick(dropdown, event) {
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove("is-active");
+        }
+    }
+
+    handleSignOutClick() {
+        signOutCurrentUser();
+        window.location.href = "/project01/login.php";
     }
 
     buildEventListeners() {
@@ -37,5 +56,10 @@ class FolderColumnObserver {
             let folder_id = parseInt(button.getAttribute('folder-id'));
             addUniqueTrackedListener(button, 'onclick', this.handleFolderButtonClick.bind(this, folder_id));
         }
+        let dropdown = document.getElementById("collection-column-user-dropdown");
+        addUniqueTrackedListener(dropdown, 'onclick', this.handleUserButtonClick.bind(this, dropdown));
+        addUniqueTrackedListener(document, 'onclick', this.handleDocumentClick.bind(this, dropdown));
+        let signOutButton = document.getElementById("collection-column-sign-out");
+        addUniqueTrackedListener(signOutButton, 'onclick', this.handleSignOutClick.bind(this))
     }
 }
