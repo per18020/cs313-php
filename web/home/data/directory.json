@@ -31,6 +31,10 @@
         {
             "title": "Week 05",
             "path": "/week05/team/index.php"
+        },
+        {
+            "title": "Week 06",
+            "path": "/week06/team/index.php"
         }
     ]
 }
