@@ -4,7 +4,7 @@ const GET_ALL_NOTES_RESPONSE = "GET_ALL_NOTES_RESPONSE";
 const GET_NOTES_IN_FOLDER_REQUEST = "GET_NOTES_IN_FOLDER_REQUEST";
 const GET_NOTES_IN_FOLDER_RESPONSE = "GET_NOTES_IN_FOLDER_RESPONSE";
 
-// const SELECT_NOTE = "SELECT_NOTE";
+const SELECT_NOTE = "SELECT_NOTE";
 
 function getAllNotesRequest() {
     return { type: GET_ALL_NOTES_REQUEST };
@@ -56,4 +56,16 @@ function getNotesInFolder(user_id, folder_id) {
                 dispatch(getAllNotesResponse(folder_id, res.notes));
             });
     }
+}
+
+function selectNote(note_id) {
+    let folder_id = getSelectedFolderState();
+    let notes = getNotesInSelectedFolderState();
+    for (let i = 0; i < notes.length; i++) {
+        notes[i].selected = false;
+        if (notes[i].note.id == note_id) {
+            notes[i].selected = true;
+        }
+    }
+    return {type: SELECT_NOTE, payload: {folder_id, value: notes}};
 }

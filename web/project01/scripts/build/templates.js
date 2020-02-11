@@ -6,10 +6,10 @@ function buildFolderColumn(data, callback = () => {}) {
     }).then(() => callback());
 }
 
-function buildNoteColumn(data) {
+function buildNoteColumn(data, callback = () => {}) {
     fetch('/project01/templates/note-column.handlebars').then((response) => {
         return response.text();
     }).then((response) => {
         document.getElementById("note-column-target").innerHTML = Handlebars.compile(response)(data);
-    });
+    }).then(() => {callback()});
 }

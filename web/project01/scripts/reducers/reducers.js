@@ -75,6 +75,11 @@ const noteReducer = (state = noteDefaultState, action) => {
                 fetched: true,
                 folders: state.folders.set(parseInt(action.payload.folder_id), action.payload.value)
             };
+        case SELECT_NOTE:
+            return {
+                ...state,
+                folders: state.folders.set(parseInt(action.payload.folder_id), action.payload.value)
+            }
         default: return state;
     }
 } 

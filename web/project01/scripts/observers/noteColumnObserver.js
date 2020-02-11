@@ -11,6 +11,20 @@ class NoteColumnObserver {
     handleChange() {
         buildNoteColumn({
             notes: getNotesInSelectedFolderState()
+        }, () => {
+            this.buildEventListeners();
         });
+    }
+
+    handleNoteClick(note_id) {
+        this.store.dispatch(selectNote(note_id));
+    }
+
+    buildEventListeners() {
+        let notes = document.getElementsByClassName("note-column-box");
+        for (let i = 0; i < notes.length; i++) {
+            let note_id = notes[i].getAttribute("note_id");
+            addUniqueTrackedListener(notes[i], 'onclick', this.handleNoteClick.bind(this, note_id));
+        }
     }
 }
