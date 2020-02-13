@@ -21,13 +21,7 @@ class FolderColumnObserver {
     }
 
     handleFolderButtonClick(folder_id) {
-        let user_id = getUserState().id;
         this.store.dispatch(selectFolder(folder_id));
-        // if (folder_id == 0) {
-        //     this.store.dispatch(getAllNotes(user_id));
-        // } else {
-        //     this.store.dispatch(getNotesInFolder(user_id, folder_id));
-        // }
     }
 
     handleUserButtonClick(dropdown) {
