@@ -69,3 +69,15 @@ function selectNote(note_id) {
     }
     return {type: SELECT_NOTE, payload: {folder_id, value: notes}};
 }
+
+function getAllNotesInFolders(user_id) {
+    return (dispatch) => {
+        return fetchAllFolders(user_id)
+            .then((res) => { return res.json() })
+            .then((res) => {
+                res.folders.forEach(folder => {
+                    dispatch(getNotesInFolder(user_id, folder.id));
+                });
+            });
+    }
+}

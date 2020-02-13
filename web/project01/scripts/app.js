@@ -44,7 +44,8 @@ console.time("load");
 Promise.all([
     store.dispatch(getUser(user_id)),
     store.dispatch(getAllFolders(user_id)),
-    store.dispatch(getAllNotes(user_id))
+    store.dispatch(getAllNotes(user_id)),
+    store.dispatch(getAllNotesInFolders(user_id))
 ]).then(() => {
     console.timeEnd("load");
 
