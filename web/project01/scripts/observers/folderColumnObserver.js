@@ -103,9 +103,10 @@ class FolderColumnObserver {
         }, () => {
             addUniqueTrackedListener(document.getElementById("modal-delete-folder-delete-button"), 'onclick', () => {
                 let user_id = getUserState().id;
-                deleteFolder(user_id, folder_id);
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
-                this.store.dispatch(getAllFolders(user_id));
+                deleteFolder(user_id, folder_id).then(() => {
+                    this.store.dispatch(getAllFolders(user_id));
+                });
             });
             addUniqueTrackedListener(document.getElementById("modal-delete-folder-cancel-button"), 'onclick', () => {
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");

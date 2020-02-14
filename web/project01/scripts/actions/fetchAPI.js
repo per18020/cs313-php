@@ -27,5 +27,5 @@ function renameFolder(user_id, folder_id, folder_title) {
 }
 
 function deleteFolder(user_id, folder_id) {
-    postData("/project01/api/deleteFolder.php", { user_id, folder_id });
+    return postData("/project01/api/deleteFolder.php", { user_id, folder_id });
 }
