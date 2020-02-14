@@ -10,6 +10,8 @@ $folder_id = htmlspecialchars($input->folder_id);
 $note_title = htmlspecialchars($input->note_title);
 $note_data = htmlspecialchars($input->note_data);
 
+var_dump($input);
+
 try {
     require "dbConnect.php";
     $db = get_db();
@@ -24,6 +26,9 @@ $statement->bindValue(':note_title', $note_title);
 $statement->bindValue(':note_data', $note_data);
 $statement->bindValue(':user_id', $user_id);
 $statement->bindValue(':note_id', $note_id);
+
+var_dump($statement);
+
 $statement->execute();
 
 ?>
