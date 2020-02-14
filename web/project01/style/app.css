@@ -147,7 +147,7 @@ a.dropdown-item, button.dropdown-item {
 .note-column-item {
     margin-bottom: 12px;
     padding: 12px;
-    border-bottom: 1px solid #f3f3f3;
+    border-bottom: 1px solid #ececec;
     cursor: pointer;
 }
 
@@ -158,7 +158,7 @@ a.dropdown-item, button.dropdown-item {
 }
 
 .note-column-item.is-active {
-    background-color: #f3f3f3;
+    background-color: #ececec;
     border-radius: 5px;
 }
 
