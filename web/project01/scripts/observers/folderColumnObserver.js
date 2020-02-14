@@ -58,11 +58,10 @@ class FolderColumnObserver {
             addUniqueTrackedListener(document.getElementById("modal-create-folder-button"), 'onclick', () => {
                 let user_id = getUserState().id;
                 let folder_title = document.getElementById("modal-create-folder-input").value;
-                if (folder_title) {
-                    createFolder(user_id, folder_title);
-                    document.getElementById("modal-target").parentNode.classList.remove("is-active");
-                    this.store.dispatch(getAllFolders(user_id));
-                }
+                folder_title = (folder_title) ? folder_title : "Untitled Folder";
+                createFolder(user_id, folder_title);
+                document.getElementById("modal-target").parentNode.classList.remove("is-active");
+                this.store.dispatch(getAllFolders(user_id));
             })
         });
     }
@@ -73,6 +72,30 @@ class FolderColumnObserver {
         } else {
             this.activeFolderOptions = folder_id;
         }
+    }
+
+    handleFolderOptionsRenameClick(folder_id) {
+        this.activeFolderOptions = null;
+        let current_folder_title = getFoldersState()[folder_id - 1].title;
+        console.log(current_folder_title);
+        buildRenameFolderModal({
+            current_folder_title,
+            button_id: "modal-rename-folder-button",
+            input_id: "modal-rename-folder-input"
+        }, () => {
+            addUniqueTrackedListener(document.getElementById('modal-rename-folder-button'), 'onclick', () => {
+                let user_id = getUserState().id;
+                let folder_title = document.getElementById("modal-rename-folder-input").value;
+                folder_title = (folder_title) ? folder_title : "Untitled Folder";
+                renameFolder(user_id, folder_id, folder_title);
+                document.getElementById("modal-target").parentNode.classList.remove("is-active");
+                this.store.dispatch(getAllFolders(user_id));
+            });
+        });
+    }
+
+    handleFolderOptionsDeleteClick(folder_id) {
+        
     }
 
     buildEventListeners() {
@@ -106,8 +129,20 @@ class FolderColumnObserver {
                     dropdowns.push(d.item(i));
                 }
             }
-
             addUniqueTrackedListener(button, 'onclick', this.handleFolderOptionsClick.bind(this, folder_id));
+        }
+
+        let optionButtonsRename = document.getElementsByClassName('collection-column-collection-options-rename');
+        for (let i = 0; i < optionButtonsRename.length; i++) {
+            let button = optionButtonsRename[i];
+            let folder_id = button.getAttribute('folder-id');
+            addUniqueTrackedListener(button, 'onclick', this.handleFolderOptionsRenameClick.bind(this, folder_id));
+        }
+        let optionButtonsDelete = document.getElementsByClassName('collection-column-collection-options-delete');
+        for (let i = 0; i < optionButtonsDelete.length; i++) {
+            let button = optionButtonsDelete[i];
+            let folder_id = button.getAttribute('folder-id');
+            addUniqueTrackedListener(button, 'onclick', this.handleFolderOptionsDeleteClick.bind(this, folder_id));
         }
 
         addUniqueTrackedListener(document, 'onclick', this.handleDocumentClick.bind(this, dropdowns));

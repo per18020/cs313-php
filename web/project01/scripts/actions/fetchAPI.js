@@ -21,3 +21,7 @@ function signOutCurrentUser() {
 function createFolder(user_id, folder_title) {
     postData("/project01/api/createFolder.php", { user_id, folder_title });
 }
+
+function renameFolder(user_id, folder_id, folder_title) {
+    postData("/project01/api/renameFolder.php", { user_id, folder_id, folder_title });
+}
