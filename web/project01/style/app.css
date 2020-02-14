@@ -68,6 +68,10 @@ body {
     overflow: unset;
 }
 
+.dropdown {
+    display: inherit;
+}
+
 .collection-column-header {
     height: 64px;
     padding: 8px 12px;

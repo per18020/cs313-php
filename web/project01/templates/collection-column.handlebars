@@ -1,5 +1,5 @@
 <div>
-    <div id="collection-column-user-dropdown" class="dropdown">
+    <div id="collection-column-user-dropdown" class="dropdown {{#is this.activeFolderOptions 0}}is-active{{/is}}">
         <div class="dropdown-trigger">
             <div class="collection-column-header is-vertical-center">
                 <div class="level">
@@ -20,7 +20,7 @@
         </div>
         <div class="dropdown-menu" id="collection-column-user-dropdown-menu" role="menu">
             <div class="dropdown-content">
-                <a href="#" class="dropdown-item">
+                <a class="dropdown-item">
                     <div class="level">
                         <div class="level-left">
                             <div class="level-item">
@@ -65,24 +65,32 @@
     </div>
     <div class="collection-column-spacer"></div>
     {{#each this.folders}}
-    <div class="collection-column-item collection-button {{#is ../selectedFolder this.id}}is-active{{/is}}"
-        folder-id="{{this.id}}">
-        <div class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <span class="icon"><i class="fas fa-folder"></i></span>
-                    <span class="collection-column-item-title">{{this.title}}</span>
+    <div class="dropdown collection-column-collection-options-dropdown {{#is ../activeFolderOptions this.id}}is-active{{/is}}" folder-id="{{this.id}}">
+        <div class="dropdown-trigger">
+            <div class="collection-column-item collection-button {{#is ../selectedFolder this.id}}is-active{{/is}}"
+                folder-id="{{this.id}}">
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <span class="icon"><i class="fas fa-folder"></i></span>
+                            <span class="collection-column-item-title">{{this.title}}</span>
+                        </div>
+                    </div>
+                    <div class="level-right collection-column-collection-options-button" folder-id="{{this.id}}">
+                        <div class="level-item">
+                            <span class="icon">
+                                <i class="fas fa-cog"></i>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="level-right">
-                <div class="level-item">
-                    <span class="icon is-small">
-                        <div class="fa-stack">
-                            <i class="fas fa-circle fa-stack-2x icon-background"></i>
-                            <i class="fas fa-cog fa-stack-1x"></i>
-                        </div>
-                    </span>
-                </div>
+        </div>
+
+        <div class="dropdown-menu">
+            <div class="dropdown-content">
+                <a class="dropdown-item" folder-id="{{this.id}}">Rename</a>
+                <a class="dropdown-item has-text-danger" folder-id="{{this.id}}">Delete</a>
             </div>
         </div>
     </div>

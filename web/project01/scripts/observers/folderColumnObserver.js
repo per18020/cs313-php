@@ -3,7 +3,7 @@ class FolderColumnObserver {
         this.store = store;
         this.init();
 
-        this.boundHandlers = [];
+        this.activeFolderOptions;
     }
 
     init() {
@@ -14,7 +14,8 @@ class FolderColumnObserver {
         buildFolderColumn({
             folders: getFoldersState(),
             username: getUserState().username,
-            selectedFolder: getSelectedFolderState()
+            selectedFolder: getSelectedFolderState(),
+            activeFolderOptions: this.activeFolderOptions
         }, () => {
             this.buildEventListeners();
         });
@@ -24,18 +25,24 @@ class FolderColumnObserver {
         this.store.dispatch(selectFolder(folder_id));
     }
 
-    handleUserButtonClick(dropdown) {
-        if (dropdown.classList.contains("is-active")) {
-            dropdown.classList.remove("is-active");
+    handleUserButtonClick() {
+        if (this.activeFolderOptions == 0) {
+            this.activeFolderOptions = null;
         } else {
-            dropdown.classList.add("is-active");
+            this.activeFolderOptions = 0;
         }
+        this.handleChange();
     }
 
-    handleDocumentClick(dropdown, event) {
-        if (!dropdown.contains(event.target)) {
-            dropdown.classList.remove("is-active");
+    handleDocumentClick(dropdowns, event) {
+        let clickedOnTriggerFlag = false;
+        for (let i = 0; i < dropdowns.length; i++) {
+            if (dropdowns[i].contains(event.target)) {
+                clickedOnTriggerFlag = true;
+            }
         }
+        if (!clickedOnTriggerFlag) this.activeFolderOptions = null;
+        this.handleChange();
     }
 
     handleSignOutClick() {
@@ -60,19 +67,49 @@ class FolderColumnObserver {
         });
     }
 
+    handleFolderOptionsClick(folder_id) {
+        if (this.activeFolderOptions == folder_id) {
+            this.activeFolderOptions = null;
+        } else {
+            this.activeFolderOptions = folder_id;
+        }
+    }
+
     buildEventListeners() {
+        let dropdowns = [];
+
         let buttons = document.getElementsByClassName('collection-button');
         for (let i = 0; i < buttons.length; i++) {
             let button = buttons[i];
             let folder_id = parseInt(button.getAttribute('folder-id'));
             addUniqueTrackedListener(button, 'onclick', this.handleFolderButtonClick.bind(this, folder_id));
         }
-        let dropdown = document.getElementById("collection-column-user-dropdown");
-        addUniqueTrackedListener(dropdown, 'onclick', this.handleUserButtonClick.bind(this, dropdown));
-        addUniqueTrackedListener(document, 'onclick', this.handleDocumentClick.bind(this, dropdown));
+
+        let userDropdown = document.getElementById("collection-column-user-dropdown");
+        addUniqueTrackedListener(userDropdown, 'onclick', this.handleUserButtonClick.bind(this));
+        dropdowns.push(userDropdown);
+
         let signOutButton = document.getElementById("collection-column-sign-out");
         addUniqueTrackedListener(signOutButton, 'onclick', this.handleSignOutClick.bind(this))
+
         let createFolderButton = document.getElementById("create-collection-button");
         addUniqueTrackedListener(createFolderButton, 'onclick', this.handleCreateFolderClick.bind(this));
+
+        let optionButtons = document.getElementsByClassName('collection-column-collection-options-button');
+        for (let i = 0; i < optionButtons.length; i++) {
+            let button = optionButtons[i];
+            let folder_id = parseInt(button.getAttribute('folder-id'));
+            
+            let d = document.getElementsByClassName('collection-column-collection-options-dropdown');
+            for (let i = 0; i < d.length; i++) {
+                if (parseInt(d[i].getAttribute('folder-id')) == folder_id) {
+                    dropdowns.push(d.item(i));
+                }
+            }
+
+            addUniqueTrackedListener(button, 'onclick', this.handleFolderOptionsClick.bind(this, folder_id));
+        }
+
+        addUniqueTrackedListener(document, 'onclick', this.handleDocumentClick.bind(this, dropdowns));
     }
 }
