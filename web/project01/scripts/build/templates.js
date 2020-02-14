@@ -13,3 +13,16 @@ function buildNoteColumn(data, callback = () => {}) {
         document.getElementById("note-column-target").innerHTML = Handlebars.compile(response)(data);
     }).then(() => {callback()});
 }
+
+function buildCreateFolderModal(data, callback = () => {}) {
+    fetch('/project01/templates/create-folder-modal.handlebars').then((response) => {
+        return response.text();
+    }).then((response) => {
+        let modalTarget = document.getElementById("modal-target")
+        modalTarget.innerHTML = Handlebars.compile(response)(data);
+        modalTarget.parentNode.classList.add("is-active");
+        document.getElementById("modal-target-background").addEventListener('click', () => {
+            modalTarget.parentNode.classList.remove("is-active");
+        })
+    }).then(() => callback());
+}

@@ -17,3 +17,7 @@ function fetchNotesInFolder(user_id, folder_id) {
 function signOutCurrentUser() {
     postData("/project01/api/signOut.php");
 }
+
+function createFolder(user_id, folder_title) {
+    postData("/project01/api/createFolder.php", { user_id, folder_title });
+}

@@ -27,6 +27,12 @@ if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
 </head>
 
 <body>
+    <div class="modal">
+        <div id="modal-target-background" class="modal-background"></div>
+        <div id="modal-target" class="modal-content">
+            
+        </div>
+    </div>
     <div id="app-loader">
         <section class="hero is-primary is-fullheight">
             <div class="hero-body">
@@ -45,16 +51,9 @@ if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
             </div>
             <div id="note-column" class="column sticky-column">
                 <!-- Searchbar -->
-                <div class="field is-grouped">
+                <div class="field">
                     <div class="control is-expanded">
                         <input class="input" type="text" placeholder="Search Notes">
-                    </div>
-                    <div class="control">
-                        <button class="button is-primary">
-                            <span class="icon is-small">
-                                <i class="far fa-sticky-note"></i>
-                            </span>
-                        </button>
                     </div>
                 </div>
                 <div id="note-column-target"></div>
