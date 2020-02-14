@@ -68,6 +68,10 @@ body {
     overflow: unset;
 }
 
+#create-collection-button-title {
+    width: 150px;
+}
+
 .dropdown {
     display: inherit;
 }

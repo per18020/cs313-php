@@ -52,3 +52,16 @@ function buildDeleteFolderModal(data, callback = () => {}) {
         })
     }).then(() => callback());
 }
+
+function buildCreateNoteModal(data, callback = () => {}) {
+    fetch('/project01/templates/create-note-modal.handlebars').then((response) => {
+        return response.text();
+    }).then((response) => {
+        let modalTarget = document.getElementById("modal-target")
+        modalTarget.innerHTML = Handlebars.compile(response)(data);
+        modalTarget.parentNode.classList.add("is-active");
+        document.getElementById("modal-target-background").addEventListener('click', () => {
+            modalTarget.parentNode.classList.remove("is-active");
+        })
+    }).then(() => callback());
+}

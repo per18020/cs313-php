@@ -29,3 +29,7 @@ function renameFolder(user_id, folder_id, folder_title) {
 function deleteFolder(user_id, folder_id) {
     return postData("/project01/api/deleteFolder.php", { user_id, folder_id });
 }
+
+function createNote(user_id, folder_id, note_title) {
+    return postData("/project01/api/createNote.php", { user_id, folder_id, note_title });
+}
