@@ -21,7 +21,7 @@ try {
     exit;
 }
 
-$query = 'UPDATE public.note SET folder_id=:folder_id, title=:note_title, last_edited=Now(), data=JSON_EXTRACT(:note_data) WHERE user_id=:user_id AND id=:note_id';
+$query = 'UPDATE public.note SET folder_id=:folder_id, title=:note_title, last_edited=Now(), data=:note_data WHERE user_id=:user_id AND id=:note_id';
 $statement = $db->prepare($query);
 $statement->bindValue(':folder_id', $folder_id);
 $statement->bindValue(':note_title', $note_title);
