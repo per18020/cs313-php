@@ -99,6 +99,8 @@ body {
 .collection-column-item-title {
     padding: 0 8px;
     width: 125px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .collection-column-create-collection {
