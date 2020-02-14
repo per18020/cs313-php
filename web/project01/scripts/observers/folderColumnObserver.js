@@ -59,9 +59,10 @@ class FolderColumnObserver {
                 let user_id = getUserState().id;
                 let folder_title = document.getElementById("modal-create-folder-input").value;
                 folder_title = (folder_title) ? folder_title : "Untitled Folder";
-                createFolder(user_id, folder_title);
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
-                this.store.dispatch(getAllFolders(user_id));
+                createFolder(user_id, folder_title).then(() => {
+                    this.store.dispatch(getAllFolders(user_id));
+                });
             })
         });
     }
@@ -86,9 +87,10 @@ class FolderColumnObserver {
                 let user_id = getUserState().id;
                 let folder_title = document.getElementById("modal-rename-folder-input").value;
                 folder_title = (folder_title) ? folder_title : "Untitled Folder";
-                renameFolder(user_id, folder_id, folder_title);
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
-                this.store.dispatch(getAllFolders(user_id));
+                renameFolder(user_id, folder_id, folder_title).then(() => {
+                    this.store.dispatch(getAllFolders(user_id));
+                });
             });
         });
     }
@@ -138,7 +140,7 @@ class FolderColumnObserver {
         for (let i = 0; i < optionButtons.length; i++) {
             let button = optionButtons[i];
             let folder_id = parseInt(button.getAttribute('folder-id'));
-            
+
             let d = document.getElementsByClassName('collection-column-collection-options-dropdown');
             for (let i = 0; i < d.length; i++) {
                 if (parseInt(d[i].getAttribute('folder-id')) == folder_id) {

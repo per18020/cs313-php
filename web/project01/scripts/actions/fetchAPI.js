@@ -19,11 +19,11 @@ function signOutCurrentUser() {
 }
 
 function createFolder(user_id, folder_title) {
-    postData("/project01/api/createFolder.php", { user_id, folder_title });
+    return postData("/project01/api/createFolder.php", { user_id, folder_title });
 }
 
 function renameFolder(user_id, folder_id, folder_title) {
-    postData("/project01/api/updateFolder.php", { user_id, folder_id, folder_title });
+    return postData("/project01/api/updateFolder.php", { user_id, folder_id, folder_title });
 }
 
 function deleteFolder(user_id, folder_id) {
