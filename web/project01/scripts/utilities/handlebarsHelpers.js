@@ -11,10 +11,3 @@ Handlebars.registerHelper('formatDate', (date, options) => {
         return date;
     }
 });
-
-Handlebars.registerHelper('overflowEllipsis', (text, length) => {
-    if (text.length > length) {
-        return text.substring(0, length - 3) + "...";
-    }
-    return text;
-});
