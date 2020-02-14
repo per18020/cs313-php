@@ -58,7 +58,7 @@ class FolderColumnObserver {
             addUniqueTrackedListener(document.getElementById("modal-create-folder-button"), 'onclick', () => {
                 let user_id = getUserState().id;
                 let folder_title = document.getElementById("modal-create-folder-input").value;
-                folder_title = (folder_title) ? folder_title : "Untitled Folder";
+                folder_title = (folder_title) ? folder_title : "Untitled";
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
                 createFolder(user_id, folder_title).then(() => {
                     this.store.dispatch(getAllFolders(user_id));
@@ -86,7 +86,7 @@ class FolderColumnObserver {
             addUniqueTrackedListener(document.getElementById('modal-rename-folder-button'), 'onclick', () => {
                 let user_id = getUserState().id;
                 let folder_title = document.getElementById("modal-rename-folder-input").value;
-                folder_title = (folder_title) ? folder_title : "Untitled Folder";
+                folder_title = (folder_title) ? folder_title : "Untitled";
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
                 renameFolder(user_id, folder_id, folder_title).then(() => {
                     this.store.dispatch(getAllFolders(user_id));
