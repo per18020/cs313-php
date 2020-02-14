@@ -77,7 +77,6 @@ class FolderColumnObserver {
     handleFolderOptionsRenameClick(folder_id) {
         this.activeFolderOptions = null;
         let current_folder_title = getFoldersState()[folder_id - 1].title;
-        console.log(current_folder_title);
         buildRenameFolderModal({
             current_folder_title,
             button_id: "modal-rename-folder-button",
@@ -95,7 +94,23 @@ class FolderColumnObserver {
     }
 
     handleFolderOptionsDeleteClick(folder_id) {
-        
+        this.activeFolderOptions = null;
+        let folder_title = getFoldersState()[folder_id - 1].title;
+        buildDeleteFolderModal({
+            folder_title,
+            delete_button_id: "modal-delete-folder-delete-button",
+            cancel_button_id: "modal-delete-folder-cancel-button"
+        }, () => {
+            addUniqueTrackedListener(document.getElementById("modal-delete-folder-delete-button"), 'onclick', () => {
+                let user_id = getUserState().id;
+                deleteFolder(user_id, folder_id);
+                document.getElementById("modal-target").parentNode.classList.remove("is-active");
+                this.store.dispatch(getAllFolders(user_id));
+            });
+            addUniqueTrackedListener(document.getElementById("modal-delete-folder-cancel-button"), 'onclick', () => {
+                document.getElementById("modal-target").parentNode.classList.remove("is-active");
+            });
+        });
     }
 
     buildEventListeners() {

@@ -39,3 +39,16 @@ function buildRenameFolderModal(data, callback = () => {}) {
         })
     }).then(() => callback());
 }
+
+function buildDeleteFolderModal(data, callback = () => {}) {
+    fetch('/project01/templates/delete-folder-modal.handlebars').then((response) => {
+        return response.text();
+    }).then((response) => {
+        let modalTarget = document.getElementById("modal-target")
+        modalTarget.innerHTML = Handlebars.compile(response)(data);
+        modalTarget.parentNode.classList.add("is-active");
+        document.getElementById("modal-target-background").addEventListener('click', () => {
+            modalTarget.parentNode.classList.remove("is-active");
+        })
+    }).then(() => callback());
+}
