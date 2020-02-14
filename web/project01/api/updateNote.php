@@ -25,7 +25,7 @@ $query = 'UPDATE public.note SET folder_id=:folder_id, title=:note_title, last_e
 $statement = $db->prepare($query);
 $statement->bindValue(':folder_id', $folder_id);
 $statement->bindValue(':note_title', $note_title);
-$statement->bindValue(':note_data', $note_data, PDO::PARAM_STR);
+$statement->bindValue(':note_data', mysqli::escape_string($note_data));
 $statement->bindValue(':user_id', $user_id);
 $statement->bindValue(':note_id', $note_id);
 
