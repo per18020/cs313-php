@@ -22,7 +22,7 @@ class NoteColumnObserver {
     }
 
     buildEventListeners() {
-        let notes = document.getElementsByClassName("note-column-box");
+        let notes = document.getElementsByClassName("note-column-note");
         for (let i = 0; i < notes.length; i++) {
             let note_id = notes[i].getAttribute("note_id");
             addUniqueTrackedListener(notes[i], 'onclick', this.handleNoteClick.bind(this, note_id));
