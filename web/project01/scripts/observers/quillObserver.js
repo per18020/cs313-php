@@ -16,11 +16,15 @@ class QuillObserver {
 
         setInterval(() => {
             if (change.length() > 0) {
+                let noteState = getSelectedNoteState();
                 let user_id = getUserState().id;
-                let note_id = getSelectedNoteState().id;
-                let folder_id = getSelectedFolderState();
-                let note_title = getSelectedNoteState().title;
+                let note_id = noteState.id;
+                let folder_id = noteState.folder_id;
+                let note_title = noteState.title;
                 let note_data = JSON.stringify(this.quill.getContents());
+
+                console.log(user_id, note_id, folder_id, note_title, note_data);
+
                 updateNote(user_id, note_id, folder_id, note_title, note_data);
                 change = new Delta();
 
