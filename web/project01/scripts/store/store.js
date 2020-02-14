@@ -20,6 +20,12 @@ function getFoldersState() {
     return store.getState().folderReducer.folders;
 }
 
+function getFolderState(folder_id) {
+    return store.getState().folderReducer.folders.find((folder) => {
+        return folder.id == folder_id;
+    });
+}
+
 function getSelectedFolderState() {
     return store.getState().folderReducer.selectedFolder;
 }

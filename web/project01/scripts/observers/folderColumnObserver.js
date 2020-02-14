@@ -76,7 +76,7 @@ class FolderColumnObserver {
 
     handleFolderOptionsRenameClick(folder_id) {
         this.activeFolderOptions = null;
-        let current_folder_title = getFoldersState()[folder_id - 1].title;
+        let current_folder_title = getFolderState(folder_id).title;
         buildRenameFolderModal({
             current_folder_title,
             button_id: "modal-rename-folder-button",
@@ -95,7 +95,7 @@ class FolderColumnObserver {
 
     handleFolderOptionsDeleteClick(folder_id) {
         this.activeFolderOptions = null;
-        let folder_title = getFoldersState()[folder_id - 1].title;
+        let folder_title = getFolderState(folder_id).title;
         buildDeleteFolderModal({
             folder_title,
             delete_button_id: "modal-delete-folder-delete-button",
