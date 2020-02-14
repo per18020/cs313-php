@@ -10,6 +10,7 @@ class NoteColumnObserver {
 
     handleChange() {
         buildNoteColumn({
+            isFolder: getSelectedFolderState() > 0,
             notes: getNotesInSelectedFolderState()
         }, () => {
             this.buildEventListeners();

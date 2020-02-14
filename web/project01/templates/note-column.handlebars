@@ -1,20 +1,24 @@
 <div>
-    <div class="box ">
-        <div class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <p>Write a new note</p>
+    {{#if this.isFolder}}
+    <div class="note-column-item">
+        <div class="container">
+            <div class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p>Write a new note</p>
+                    </div>
                 </div>
-            </div>
-            <div class="level-right">
-                <div class="level-item">
-                    
+                <div class="level-right">
+                    <div class="level-item">
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    {{/if}}
     {{#each notes}}
-    <div class="box note-column-box" note_id="{{this.note.id}}">
+    <div class="note-column-item" note_id="{{this.note.id}}">
         <div class="level">
             <div class="level-left">
                 <div class="level-item">
@@ -23,7 +27,7 @@
             </div>
             <div class="level-left">
                 <div class="level-item">
-                    <p>{{this.note.creation}}</p>
+                    <p>{{#formatDate this.note.creation}}{{/formatDate}}</p>
                 </div>
             </div>
         </div>

@@ -144,6 +144,9 @@ a.dropdown-item, button.dropdown-item {
     margin: 12px;
 }
 
-.note-column-box {
+.note-column-item {
+    margin-bottom: 12px;
+    padding: 12px;
+    border-bottom: 1px solid #e8eaed;
     cursor: pointer;
 }
