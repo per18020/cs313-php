@@ -10,6 +10,8 @@ $folder_id = htmlspecialchars($input->folder_id);
 $note_title = htmlspecialchars($input->note_title);
 $note_data = htmlspecialchars($input->note_data);
 
+
+
 var_dump($input);
 
 try {
@@ -22,8 +24,8 @@ try {
 $query = 'UPDATE public.note SET folder_id=:folder_id, title=:note_title, last_edited=Now(), data=:note_data WHERE user_id=:user_id AND id=:note_id';
 $statement = $db->prepare($query);
 $statement->bindValue(':folder_id', $folder_id);
-$statement->bindValue(':note_title', $note_title);
-$statement->bindValue(':note_data', $note_data);
+$statement->bindValue(':note_title', $db->quote($note_title));
+$statement->bindValue(':note_data', $db->quote($note_data));
 $statement->bindValue(':user_id', $user_id);
 $statement->bindValue(':note_id', $note_id);
 
