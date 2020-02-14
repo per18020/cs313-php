@@ -13,7 +13,7 @@ try {
     exit;
 }
 
-$query = 'INSERT INTO public.folder (user_id, folder_title) VALUES (:user_id, :folder_title)';
+$query = 'INSERT INTO public.folder (user_id, title) VALUES (:user_id, :folder_title)';
 $statement = $db->prepare($query);
 $statement->bindValue(':user_id', $user_id);
 $statement->bindValue(':folder_title', $folder_title);
