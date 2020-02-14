@@ -147,13 +147,29 @@ a.dropdown-item, button.dropdown-item {
 .note-column-item {
     margin-bottom: 12px;
     padding: 12px;
-    border-bottom: 1px solid #e8eaed;
+    border-bottom: 1px solid #f3f3f3;
     cursor: pointer;
 }
 
-.note-column-item.is-active {
-    /* border-left: 3px solid #00d1b2; */
-    background-color: #e8eaed;
-    /* color: white; */
+.note-column-item:hover {
+    background-color: #f4f4f5;
+    border-bottom: 1px solid #f4f4f5;
     border-radius: 5px;
+}
+
+.note-column-item.is-active {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+}
+
+#note-column-add-note {
+    color: #a7abb3;
+    padding-left: 0;
+    border-top: 1px solid #e8eaed;
+    border-bottom: 1px solid #e8eaed;
+}
+
+#note-column-add-note:hover {
+    border-top: 1px solid #f4f4f5;
+    border-bottom: 1px solid #f4f4f5;
 }

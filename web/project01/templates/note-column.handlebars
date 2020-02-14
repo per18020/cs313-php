@@ -1,16 +1,18 @@
 <div>
     {{#if this.isFolder}}
-    <div class="note-column-item">
+    <div id="note-column-add-note" class="note-column-item">
         <div class="container">
             <div class="level">
                 <div class="level-left">
                     <div class="level-item">
+                        <span class="icon"><i class="fas fa-plus"></i></span>
                         <p>Write a new note</p>
                     </div>
                 </div>
                 <div class="level-right">
                     <div class="level-item">
-
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -22,7 +24,7 @@
         <div class="level">
             <div class="level-left">
                 <div class="level-item">
-                    <h1>{{this.note.title}}</h1>
+                    <h1 class="has-text-weight-bold">{{this.note.title}}</h1>
                 </div>
             </div>
             <div class="level-left">
