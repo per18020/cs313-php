@@ -24,8 +24,7 @@ class QuillObserver {
                 let note_data = JSON.stringify(this.quill.getContents());
 
                 console.log(user_id, note_id, folder_id, note_title, note_data);
-
-                // updateNote(user_id, note_id, folder_id, note_title, note_data);
+                updateNote(user_id, note_id, folder_id, note_title, note_data);
                 change = new Delta();
 
                 console.log("saved data");
