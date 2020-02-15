@@ -35,7 +35,6 @@
         $response->id = $row["id"];
         $response->email = $row["email"];
         $response->username = $row["username"];
-        $response->last_edited_note = $row["last_edited_note"];
     }
 
     echo json_encode($response);

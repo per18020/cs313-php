@@ -3,8 +3,7 @@ CREATE TABLE public.user
 	id serial PRIMARY KEY,
 	email varchar(255) UNIQUE NOT NULL,
 	username varchar(16) NOT NULL,
-    password varchar(255) NOT NULL,
-	last_edited_note integer
+    password varchar(255) NOT NULL
 );
 
 CREATE TABLE public.note 
@@ -24,8 +23,6 @@ CREATE TABLE public.folder
 	user_id integer NOT NULL,
 	title varchar(255) NOT NULL
 );
-
-ALTER TABLE public.user ADD CONSTRAINT user_fk0 FOREIGN KEY (last_edited_note) REFERENCES public.note(id);
 
 ALTER TABLE public.note ADD CONSTRAINT note_fk0 FOREIGN KEY (user_id) REFERENCES public.user(id);
 ALTER TABLE public.note ADD CONSTRAINT note_fk1 FOREIGN KEY (folder_id) REFERENCES public.folder(id);
