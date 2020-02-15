@@ -16,6 +16,8 @@ try {
     exit;
 }
 
+echo addslashes($note_data);
+
 $query = 'UPDATE public.note SET folder_id=:folder_id, title=:note_title, last_edited=Now(), data=:note_data WHERE user_id=:user_id AND id=:note_id';
 $statement = $db->prepare($query);
 $statement->bindValue(':folder_id', $folder_id);
