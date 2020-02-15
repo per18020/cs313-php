@@ -72,7 +72,7 @@ function selectNote(note_id) {
 
         saveCurrentNote().then(() => {
             dispatch(getAllNotes(user_id));
-            dispatch(getNotesInFolder(user_id, current_folder_id));
+            dispatch(getNotesInFolder(user_id, folder_id));
         })      
 
         dispatch({ type: SELECT_NOTE, payload: { folder_id, value: notes } });
