@@ -9,12 +9,21 @@ class NoteColumnObserver {
     }
 
     handleChange() {
-        buildNoteColumn({
-            isFolder: getSelectedFolderState() > 0,
-            notes: getNotesInSelectedFolderState()
-        }, () => {
-            this.buildEventListeners();
-        });
+        let notes = getNotesInSelectedFolderState();
+        if (notes) {
+            let sortedNotes = getNotesInSelectedFolderState()?.slice().sort((a, b) => {
+                let aa = new Date(a.note.last_edited);
+                let bb = new Date(b.note.last_edited);
+                return bb - aa;
+            });
+
+            buildNoteColumn({
+                isFolder: getSelectedFolderState() > 0,
+                notes: sortedNotes
+            }, () => {
+                this.buildEventListeners();
+            });
+        }
     }
 
     handleNoteClick(note_id) {

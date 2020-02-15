@@ -88,6 +88,7 @@ function updateSelectedNote(options = {}) {
     if (selectedNote) {
         selectedNote.title = (options.title) ? options.title : selectedNote.title;
         selectedNote.data = (options.data) ? options.data : selectedNote.data;
+        selectedNote.last_edited = new Date().toISOString();
         return { type: UPDATE_SELECTED_NOTE, payload: { selected: true, note: selectedNote} };
     }
     return { type: "" };
