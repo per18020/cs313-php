@@ -59,15 +59,24 @@ function getNotesInFolder(user_id, folder_id) {
 }
 
 function selectNote(note_id) {
-    let folder_id = getSelectedFolderState();
-    let notes = getNotesInSelectedFolderState();
-    for (let i = 0; i < notes.length; i++) {
-        notes[i].selected = false;
-        if (notes[i].note.id == note_id) {
-            notes[i].selected = true;
+    return (dispatch) => {
+        let user_id = getUserState().id;
+        let folder_id = getSelectedFolderState();
+        let notes = getNotesInSelectedFolderState();
+        for (let i = 0; i < notes.length; i++) {
+            notes[i].selected = false;
+            if (notes[i].note.id == note_id) {
+                notes[i].selected = true;
+            }
         }
+
+        saveCurrentNote().then(() => {
+            dispatch(getAllNotes(user_id));
+            dispatch(getNotesInFolder(user_id, current_folder_id));
+        })      
+
+        dispatch({ type: SELECT_NOTE, payload: { folder_id, value: notes } });
     }
-    return { type: SELECT_NOTE, payload: { folder_id, value: notes } };
 }
 
 function getAllNotesInFolders(user_id) {
