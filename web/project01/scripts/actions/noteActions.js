@@ -33,7 +33,6 @@ function getAllNotes(user_id) {
         return fetchAllNotes(user_id)
             .then((res) => { return res.json() })
             .then((res) => {
-
                 dispatch(getAllNotesResponse(0, res.notes));
             });
     }
@@ -59,18 +58,15 @@ function getNotesInFolder(user_id, folder_id) {
 }
 
 function selectNote(note_id) {
-    return (dispatch) => {
-        let user_id = getUserState().id;
-        let folder_id = getSelectedFolderState();
-        let notes = getNotesInSelectedFolderState();
-        for (let i = 0; i < notes.length; i++) {
-            notes[i].selected = false;
-            if (notes[i].note.id == note_id) {
-                notes[i].selected = true;
-            }
-        }   
-        dispatch({ type: SELECT_NOTE, payload: { folder_id, value: notes } });
+    let folder_id = getSelectedFolderState();
+    let notes = getNotesInSelectedFolderState();
+    for (let i = 0; i < notes.length; i++) {
+        notes[i].selected = false;
+        if (notes[i].note.id == note_id) {
+            notes[i].selected = true;
+        }
     }
+    return { type: SELECT_NOTE, payload: { folder_id, value: notes } };
 }
 
 function getAllNotesInFolders(user_id) {
@@ -83,17 +79,4 @@ function getAllNotesInFolders(user_id) {
                 });
             });
     }
-}
-
-function saveCurrentNote() {
-    let noteState = getSelectedNoteState();
-    if (noteState) {
-        let user_id = getUserState().id;
-        let note_id = noteState.id;
-        let folder_id = noteState.folder_id;
-        let note_title = noteState.title;
-        let note_data = JSON.stringify(quill.getContents());
-        return updateNote(user_id, note_id, folder_id, note_title, note_data);
-    }
-    return Promise.resolve();
 }

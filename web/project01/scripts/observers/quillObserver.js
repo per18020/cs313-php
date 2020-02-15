@@ -14,16 +14,14 @@ class QuillObserver {
             change = change.compose(delta);
         });
 
-        setInterval(() => {
-            if (change.length() > 0) {
-                saveCurrentNote();
-                change = new Delta();
-            }
-        }, 3000);
+        // setInterval(() => {
+        //     if (change.length() > 0) {
+        //         change = new Delta();
+        //     }
+        // }, 3000);
     }
 
     handleChange() {
-        saveCurrentNote();
         let selectedNote = getSelectedNoteState();
         if (selectedNote) {
             this.quill.setContents(JSON.parse(formatJSONString(selectedNote.data)));

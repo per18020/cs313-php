@@ -23,9 +23,5 @@ function getAllFolders(user_id) {
 }
 
 function selectFolder(folder_id) {
-    return (dispatch) => {
-        let user_id = getUserState().id;
-        dispatch(getNotesInFolder(user_id, folder_id));
-        dispatch({ type: SELECT_FOLDER, folder_id });
-    }
+    return { type: SELECT_FOLDER, folder_id };
 }
