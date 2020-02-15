@@ -24,14 +24,8 @@ function getAllFolders(user_id) {
 
 function selectFolder(folder_id) {
     return (dispatch) => {
-        let current_folder_id = getSelectedFolderState();
         let user_id = getUserState().id;
-
-        // saveCurrentNote().then(() => {
-        //     dispatch(getAllNotes(user_id));
-        //     dispatch(getNotesInFolder(user_id, current_folder_id));
-        // })        
-
+        dispatch(getNotesInFolder(user_id, folder_id));
         dispatch({ type: SELECT_FOLDER, folder_id });
     }
 }
