@@ -67,7 +67,7 @@ function selectNote(note_id) {
             notes[i].selected = true;
         }
     }
-    return {type: SELECT_NOTE, payload: {folder_id, value: notes}};
+    return { type: SELECT_NOTE, payload: { folder_id, value: notes } };
 }
 
 function getAllNotesInFolders(user_id) {
@@ -80,4 +80,17 @@ function getAllNotesInFolders(user_id) {
                 });
             });
     }
+}
+
+function saveCurrentNote() {
+    let noteState = getSelectedNoteState();
+    if (noteState) {
+        let user_id = getUserState().id;
+        let note_id = noteState.id;
+        let folder_id = noteState.folder_id;
+        let note_title = noteState.title;
+        let note_data = JSON.stringify(quill.getContents());
+        return updateNote(user_id, note_id, folder_id, note_title, note_data);
+    }
+    return Promise.resolve();
 }
