@@ -23,6 +23,7 @@ class QuillObserver {
     }
 
     handleChange() {
+        saveCurrentNote();
         let selectedNote = getSelectedNoteState();
         if (selectedNote) {
             this.quill.setContents(JSON.parse(formatJSONString(selectedNote.data)));

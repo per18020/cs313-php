@@ -68,13 +68,7 @@ function selectNote(note_id) {
             if (notes[i].note.id == note_id) {
                 notes[i].selected = true;
             }
-        }
-
-        saveCurrentNote().then(() => {
-            dispatch(getAllNotes(user_id));
-            dispatch(getNotesInFolder(user_id, folder_id));
-        })      
-
+        }   
         dispatch({ type: SELECT_NOTE, payload: { folder_id, value: notes } });
     }
 }
