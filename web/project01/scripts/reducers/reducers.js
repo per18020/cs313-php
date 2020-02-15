@@ -82,6 +82,11 @@ const noteReducer = (state = noteDefaultState, action) => {
                 ...state,
                 folders: state.folders.set(parseInt(action.payload.folder_id), action.payload.value)
             }
+        case UPDATE_SELECTED_NOTE:
+            return {
+                ...state,
+                folders: state.folders.set(action.payload.folder_id, action.payload)
+            }
         default: return state;
     }
 } 

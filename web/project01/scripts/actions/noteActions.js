@@ -6,6 +6,8 @@ const GET_NOTES_IN_FOLDER_RESPONSE = "GET_NOTES_IN_FOLDER_RESPONSE";
 
 const SELECT_NOTE = "SELECT_NOTE";
 
+const UPDATE_SELECTED_NOTE = "UPDATE_SELECTED_NOTE";
+
 function getAllNotesRequest() {
     return { type: GET_ALL_NOTES_REQUEST };
 }
@@ -80,3 +82,26 @@ function getAllNotesInFolders(user_id) {
             });
     }
 }
+
+function updateSelectedNote(options = {}) {
+    let selectedNote = getSelectedNoteState();
+    if (selectedNote) {
+        selectedNote.title = (options.title) ? options.title : selectedNote.title;
+        selectedNote.data = (options.data) ? options.data : selectedNote.data;
+        return { type: UPDATE_SELECTED_NOTE, payload: { selected: true, note: selectedNote} };
+    }
+    return { type: "" };
+}
+
+function saveCurrentNote() {
+    let noteState = getSelectedNoteState();
+    if (noteState) {
+        let user_id = getUserState().id;
+        let note_id = noteState.id;
+        let folder_id = noteState.folder_id;
+        let note_title = noteState.title;
+        let note_data = JSON.stringify(quill.getContents());
+        return updateNote(user_id, note_id, folder_id, note_title, note_data);
+    }
+    return Promise.resolve();
+} 
