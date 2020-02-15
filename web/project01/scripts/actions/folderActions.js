@@ -28,6 +28,7 @@ function selectFolder(folder_id) {
         let user_id = getUserState().id;
 
         saveCurrentNote().then(() => {
+            dispatch(getAllNotes(user_id));
             dispatch(getNotesInFolder(user_id, current_folder_id));
         })        
 
