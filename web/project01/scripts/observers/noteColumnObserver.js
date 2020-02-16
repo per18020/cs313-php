@@ -11,17 +11,16 @@ class NoteColumnObserver {
     handleChange() {
         let notes = getNotesInSelectedFolderState();
         if (notes) {
-            let sortedNotes = getNotesInSelectedFolderState().slice().sort((a, b) => {
+            var sortedNotes = getNotesInSelectedFolderState().slice().sort((a, b) => {
                 return new Date(b.note.last_edited) - new Date(a.note.last_edited);
             });
-
-            buildNoteColumn({
-                isFolder: getSelectedFolderState() > 0,
-                notes: sortedNotes
-            }, () => {
-                this.buildEventListeners();
-            });
         }
+        buildNoteColumn({
+            isFolder: getSelectedFolderState() > 0,
+            notes: sortedNotes
+        }, () => {
+            this.buildEventListeners();
+        });
     }
 
     handleNoteClick(note_id) {
