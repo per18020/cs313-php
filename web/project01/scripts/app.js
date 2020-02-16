@@ -41,16 +41,22 @@ const folderColumnObserver = new FolderColumnObserver(store, documentClickHandle
 const noteColumnObserver = new NoteColumnObserver(store, documentClickHandler);
 const quillObserver = new QuillObserver(store, quill);
 
-let user_id = await getSignedInUser().user.id;
+var user_id;
+getSignedInUser().then((res) => {
+    if (res.error) {
+        user_id = 0;
+    } else {
+        user_id = res.user.id;
+    }
+}).then(() => {
+    Promise.all([
+        store.dispatch(getUser(user_id)),
+        store.dispatch(getAllFolders(user_id)),
+        store.dispatch(getAllNotes(user_id)),
+        store.dispatch(getAllNotesInFolders(user_id))
+    ]).then(() => {
+        console.timeEnd("load");
 
-Promise.all([
-    store.dispatch(getUser(user_id)),
-    store.dispatch(getAllFolders(user_id)),
-    store.dispatch(getAllNotes(user_id)),
-    store.dispatch(getAllNotesInFolders(user_id))
-]).then(() => {
-    console.timeEnd("load");
-
-    document.getElementById("app-loader").style.display = "none";
-})
-
+        document.getElementById("app-loader").style.display = "none";
+    });
+});
