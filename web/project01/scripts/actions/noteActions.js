@@ -14,9 +14,16 @@ function getAllNotesRequest() {
 
 function getAllNotesResponse(folder_id, notes) {
     let formattedNotes = [];
+
+    if (notes) {
+        var sortedNotes = getNotesInSelectedFolderState().slice().sort((a, b) => {
+            return new Date(b.note.last_edited) - new Date(a.note.last_edited);
+        });
+    }
+
     for (let i = 0; i < notes.length; i++) {
         formattedNotes.push({
-            selected: (i == 0), // First in the list is selected by default
+            selected: notes[i].id == sortedNotes[0].id,
             note: notes[i]
         });
     }
