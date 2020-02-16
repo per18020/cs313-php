@@ -23,7 +23,7 @@ function getAllNotesResponse(folder_id, notes) {
 
     for (let i = 0; i < notes.length; i++) {
         formattedNotes.push({
-            selected: notes[i].id == sortedNotes[0].id,
+            selected: notes[i].id == sortedNotes[sortedNotes.length - 1].id,
             note: notes[i]
         });
     }
