@@ -37,3 +37,7 @@ function createNote(user_id, folder_id, note_title) {
 function updateNote(user_id, note_id, folder_id, note_title, last_edited, note_data) {
     return postData("/project01/api/updateNote.php", { user_id, note_id, folder_id, note_title, last_edited, note_data })
 }
+
+function deleteNote(user_id, note_id) {
+    return postData("/project01/api/deleteNote.php", { user_id, note_id });
+}

@@ -65,7 +65,7 @@ class NoteColumnObserver {
     handleNoteOptionsRenameClick() {
         this.activeNoteOptions = null;
         let current_note_title = getSelectedNoteState().title;
-        buildRenameFolderModal({
+        buildRenameNoteModal({
             current_note_title,
             button_id: "modal-rename-note-button",
             input_id: "modal-rename-note-input"
@@ -80,7 +80,24 @@ class NoteColumnObserver {
     }
 
     handleNoteOptionsDeleteClick(note_id) {
-        
+        this.activeNoteOptions = null;
+        let note_title = getSelectedNoteState().title;
+        buildDeleteNoteModal({
+            note_title,
+            delete_button_id: "modal-delete-note-delete-button",
+            cancel_button_id: "modal-delete-note-cancel-button"
+        }, () => {
+            addUniqueTrackedListener(document.getElementById("modal-delete-note-delete-button"), 'onclick', () => {
+                let user_id = getUserState().id;
+                document.getElementById("modal-target").parentNode.classList.remove("is-active");
+                deleteNote(user_id, note_id).then(() => {
+                    this.store.dispatch(getNotesInFolder(user_id, getSelectedFolderState()));
+                });
+            });
+            addUniqueTrackedListener(document.getElementById("modal-delete-note-cancel-button"), 'onclick', () => {
+                document.getElementById("modal-target").parentNode.classList.remove("is-active");
+            });
+        });
     }
 
     buildEventListeners() {
