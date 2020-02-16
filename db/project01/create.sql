@@ -12,8 +12,8 @@ CREATE TABLE public.note
 	user_id integer NOT NULL,
 	folder_id integer,
 	title varchar(255) NOT NULL,
-	creation timestamp NOT NULL,
-	last_edited timestamp NOT NULL,
+	creation timestamp WITHOUT TIME ZONE DEFAULT (NOW() AT TIME ZONE 'utc'),
+	last_edited timestamp WITHOUT TIME ZONE DEFAULT (NOW() AT TIME ZONE 'utc'),
 	data text NOT NULL
 );
 

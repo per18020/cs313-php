@@ -17,6 +17,8 @@ class NoteColumnObserver {
                 return aa - bb;
             });
 
+            console.log(notes, sortedNotes);
+
             buildNoteColumn({
                 isFolder: getSelectedFolderState() > 0,
                 notes: sortedNotes
