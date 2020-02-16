@@ -2,6 +2,8 @@
 // Set up quill
 // https://quilljs.com/
 
+console.time("load");
+
 const bindings = {
     removeFormattingOnBackspace: {
         key: "backspace",
@@ -41,7 +43,6 @@ const quillObserver = new QuillObserver(store, quill);
 
 let user_id = 1;
 
-console.time("load");
 Promise.all([
     store.dispatch(getUser(user_id)),
     store.dispatch(getAllFolders(user_id)),
