@@ -31,7 +31,7 @@ function deleteFolder(user_id, folder_id) {
 }
 
 function createNote(user_id, folder_id, note_title) {
-    return postData("/project01/api/createNote.php", { user_id, folder_id, note_title });
+    return postData("/project01/api/createNote.php", { user_id, folder_id, note_title, creation: new Date().toISOString() });
 }
 
 function updateNote(user_id, note_id, folder_id, note_title, last_edited, note_data) {
