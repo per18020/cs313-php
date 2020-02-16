@@ -101,8 +101,9 @@ function saveCurrentNote() {
         let note_id = noteState.id;
         let folder_id = noteState.folder_id;
         let note_title = noteState.title;
+        let last_edited = noteState.last_edited;
         let note_data = JSON.stringify(quill.getContents());
-        return updateNote(user_id, note_id, folder_id, note_title, note_data);
+        return updateNote(user_id, note_id, folder_id, note_title, last_edited, note_data);
     }
     return Promise.resolve();
 } 
