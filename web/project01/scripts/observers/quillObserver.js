@@ -12,7 +12,7 @@ class QuillObserver {
         let change = new Delta;
         this.quill.on('text-change', (delta) => {
             change = change.compose(delta);
-            this.store.dispatch(updateSelectedNote({ data: JSON.stringify(this.quill.getContents()) }))
+            this.store.dispatch(updateSelectedNote({ data: JSON.stringify(this.quill.getContents()), last_edited: new Date().toISOString() }))
             change = new Delta();
         });
 
