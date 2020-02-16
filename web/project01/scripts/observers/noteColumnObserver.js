@@ -12,10 +12,8 @@ class NoteColumnObserver {
         let notes = getNotesInSelectedFolderState();
         if (notes) {
             let sortedNotes = getNotesInSelectedFolderState().slice().sort((a, b) => {
-                return new Date(a.note.last_edited) - new Date(b.note.last_edited);
+                return new Date(b.note.last_edited) - new Date(a.note.last_edited);
             });
-
-            console.log(notes, sortedNotes);
 
             buildNoteColumn({
                 isFolder: getSelectedFolderState() > 0,
