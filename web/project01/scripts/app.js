@@ -41,7 +41,7 @@ const folderColumnObserver = new FolderColumnObserver(store, documentClickHandle
 const noteColumnObserver = new NoteColumnObserver(store, documentClickHandler);
 const quillObserver = new QuillObserver(store, quill);
 
-let user_id = 1;
+let user_id = await getSignedInUser().user.id;
 
 Promise.all([
     store.dispatch(getUser(user_id)),
