@@ -17,7 +17,7 @@ function getAllNotesResponse(folder_id, notes) {
 
     if (notes) {
         var sortedNotes = notes.slice().sort((a, b) => {
-            return new Date(b.note.last_edited) - new Date(a.note.last_edited);
+            return new Date(b.last_edited) - new Date(a.last_edited);
         });
     }
 
