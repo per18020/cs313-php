@@ -21,8 +21,7 @@ function getAllNotesResponse(folder_id, notes) {
         });
     }
 
-    for (let i = 0; i < notes.length; i++) {
-        console.log(notes[i].id, sortedNotes[0].id);
+    for (let i = 0; i < notes.length; i++) {        
         formattedNotes.push({
             selected: notes[i].id == sortedNotes[0].id,
             note: notes[i]
