@@ -25,7 +25,7 @@ class QuillObserver {
                 saveCurrentNote().then(() => console.log("Saved"));
                 change = new Delta();
             }
-        }, 2000);
+        }, 1000);
     }
 
     handleChange() {
@@ -38,7 +38,7 @@ class QuillObserver {
                 // This should only really run once when a note is loaded in.
                 this.loadedDataFromStore = true;
                 this.quill.setContents(JSON.parse(newData));
-                
+                this.quill.setSelection(0, 0);
             }
         }
     }
