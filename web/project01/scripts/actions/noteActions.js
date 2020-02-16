@@ -16,14 +16,15 @@ function getAllNotesResponse(folder_id, notes) {
     let formattedNotes = [];
 
     if (notes) {
-        var sortedNotes = getNotesInSelectedFolderState().slice().sort((a, b) => {
+        var sortedNotes = notes.slice().sort((a, b) => {
             return new Date(b.note.last_edited) - new Date(a.note.last_edited);
         });
     }
 
     for (let i = 0; i < notes.length; i++) {
+        console.log(notes[i].id, sortedNotes[0].id);
         formattedNotes.push({
-            selected: notes[i].id == sortedNotes[sortedNotes.length - 1].id,
+            selected: notes[i].id == sortedNotes[0].id,
             note: notes[i]
         });
     }
