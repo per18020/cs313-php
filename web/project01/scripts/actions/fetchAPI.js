@@ -2,6 +2,10 @@ function fetchUser(user_id) {
     return postData("/project01/api/getUser.php", { id: user_id });
 }
 
+function fetchSignedInUser() {
+    return postData("/project01/api/getSignedInUser.php");
+}
+
 function fetchAllFolders(user_id) {
     return postData("/project01/api/getFolders.php", { id: user_id });
 }

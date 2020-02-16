@@ -19,3 +19,9 @@ function getUser(id) {
             });
     }
 }
+
+function getSignedInUser() {
+    return fetchSignedInUser().then((res) => { return res.json() }).then((res) => {
+        return res;
+    });
+}
