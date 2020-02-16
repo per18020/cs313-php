@@ -32,13 +32,22 @@ if (isset($_SESSION["isAuthenticated"])) {
                     <div class="column is-8-tablet is-6-widescreen">
                         <form onsubmit="return login();" class="box" name="mainForm">
                             <div class="section">
-                                <div class="title">Project 01</div>
+                                <div class="title">Sign up</div>
                                 <div class="field">
                                     <label class="label">Email</label>
                                     <div class="control has-icons-left">
                                         <input name="email" type="email" class="input" required>
                                         <span class="icon is-small is-left">
                                             <i class="fa fa-envelope"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Username</label>
+                                    <div class="control has-icons-left">
+                                        <input name="username" type="text" class="input" required maxlength="25">
+                                        <span class="icon is-small is-left">
+                                            <i class="fa fa-user"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -51,18 +60,21 @@ if (isset($_SESSION["isAuthenticated"])) {
                                         </span>
                                     </div>
                                 </div>
+                                <div class="field">
+                                    <label class="label">Verify Password</label>
+                                    <div class="control has-icons-left">
+                                        <input name="verifyPassword" type="password" class="input" required>
+                                        <span class="icon is-small is-left">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="level">
                                     <div class="level-left">
                                         <div class="level-item">
                                             <button id="login-button" class="button is-success">
-                                                Login
+                                                Sign up
                                             </button>
-                                        </div>
-                                    </div>
-                                    <div class="level-right">
-                                        <div class="level-item">
-                                            <span>Don't have an account?</span>
-                                            <button id="signup-button" class="button is-text">Sign up</button>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +89,7 @@ if (isset($_SESSION["isAuthenticated"])) {
     <div id="error" class="notification is-danger"></div>
 
     <script src="/project01/scripts/utilities/util.js"></script>
-    <script src="/project01/scripts/login.js"></script>
+    <script src="/project01/scripts/signup.js"></script>
 </body>
 
 </html>

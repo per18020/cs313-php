@@ -20,3 +20,7 @@ function login() {
         });
     return false;
 }
+
+document.getElementById("signup-button").addEventListener("click", () => {
+    window.location.href = "/project01/signup.php";
+})
