@@ -1,6 +1,7 @@
 class FolderColumnObserver {
-    constructor(store) {
+    constructor(store, documentClickHandler) {
         this.store = store;
+        this.documentClickHandler = documentClickHandler;
         this.init();
 
         this.activeFolderOptions;
@@ -34,14 +35,8 @@ class FolderColumnObserver {
         this.handleChange();
     }
 
-    handleDocumentClick(dropdowns, event) {
-        let clickedOnTriggerFlag = false;
-        for (let i = 0; i < dropdowns.length; i++) {
-            if (dropdowns[i].contains(event.target)) {
-                clickedOnTriggerFlag = true;
-            }
-        }
-        if (!clickedOnTriggerFlag) this.activeFolderOptions = null;
+    handleDocumentClick() {
+        this.activeFolderOptions = null;
         this.handleChange();
     }
 
@@ -117,8 +112,6 @@ class FolderColumnObserver {
     }
 
     buildEventListeners() {
-        let dropdowns = [];
-
         let buttons = document.getElementsByClassName('collection-button');
         for (let i = 0; i < buttons.length; i++) {
             let button = buttons[i];
@@ -128,7 +121,8 @@ class FolderColumnObserver {
 
         let userDropdown = document.getElementById("collection-column-user-dropdown");
         addUniqueTrackedListener(userDropdown, 'onclick', this.handleUserButtonClick.bind(this));
-        dropdowns.push(userDropdown);
+        // dropdowns.push(userDropdown);
+        this.documentClickHandler.addIgnoredElement("user-dropdown", userDropdown);
 
         let signOutButton = document.getElementById("collection-column-sign-out");
         addUniqueTrackedListener(signOutButton, 'onclick', this.handleSignOutClick.bind(this))
@@ -144,7 +138,8 @@ class FolderColumnObserver {
             let d = document.getElementsByClassName('collection-column-collection-options-dropdown');
             for (let i = 0; i < d.length; i++) {
                 if (parseInt(d[i].getAttribute('folder-id')) == folder_id) {
-                    dropdowns.push(d.item(i));
+                    // dropdowns.push(d.item(i));
+                    this.documentClickHandler.addIgnoredElement("folder-dropdown" + i, d.item(i));
                 }
             }
             addUniqueTrackedListener(button, 'onclick', this.handleFolderOptionsClick.bind(this, folder_id));
@@ -163,6 +158,7 @@ class FolderColumnObserver {
             addUniqueTrackedListener(button, 'onclick', this.handleFolderOptionsDeleteClick.bind(this, folder_id));
         }
 
-        addUniqueTrackedListener(document, 'onclick', this.handleDocumentClick.bind(this, dropdowns));
+        // addUniqueTrackedListener(document, 'onclick', this.handleDocumentClick.bind(this, dropdowns));
+        this.documentClickHandler.subscribe("folder-column", this.handleDocumentClick.bind(this));
     }
 }

@@ -34,8 +34,9 @@ const quill = new Quill('#editor', {
     scrollingContainer: '#scrolling-container'
 });
 
-const folderColumnObserver = new FolderColumnObserver(store);
-const noteColumnObserver = new NoteColumnObserver(store);
+const documentClickHandler = new DocumentClickHandler();
+const folderColumnObserver = new FolderColumnObserver(store, documentClickHandler);
+const noteColumnObserver = new NoteColumnObserver(store, documentClickHandler);
 const quillObserver = new QuillObserver(store, quill);
 
 let user_id = 1;

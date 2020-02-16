@@ -122,21 +122,21 @@ body {
     visibility: hidden;
 }
 
-.dropdown-menu {
+#collection-column-target .dropdown-menu {
     padding-top: 0;
 }
 
-.dropdown-trigger:hover {
+#collection-column-target .dropdown-trigger:hover {
     cursor: pointer;
 }
 
-.dropdown-content {
+#collection-column-target .dropdown-content {
     width: 174px;
     margin: 12px;
     margin-top: 0;
 }
 
-a.dropdown-item, button.dropdown-item {
+#collection-column-target a.dropdown-item, button.dropdown-item {
     padding-right: 1rem;
 }
 

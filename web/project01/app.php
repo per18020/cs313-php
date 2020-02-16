@@ -86,6 +86,7 @@ if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
     <script src="/project01/scripts/reducers/reducers.js"></script>
     <script src="/project01/scripts/store/store.js"></script>
     <!-- Custom JS -->
+    <script src="/project01/scripts/utilities/documentClickHandler.js"></script>
     <script src="/project01/scripts/observers/folderColumnObserver.js"></script>
     <script src="/project01/scripts/observers/noteColumnObserver.js"></script>
     <script src="/project01/scripts/observers/quillObserver.js"></script>

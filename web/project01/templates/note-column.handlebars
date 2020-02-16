@@ -14,20 +14,31 @@
     </div>
     {{/if}}
     {{#each notes}}
-    <div class="note-column-item note-column-note {{#if this.selected}}is-active{{/if}}" note_id="{{this.note.id}}">
-        <div class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <h1 class="has-text-weight-bold">{{this.note.title}}</h1>
+    <div class="dropdown is-right note-column-note-options-dropdown {{#is ../activeNoteOptions this.note.id}}is-active{{/is}}" note-id="{{this.note.id}}">
+        <div class="dropdown-trigger note-column-item note-column-note {{#if this.selected}}is-active{{/if}}" note-id="{{this.note.id}}">
+            <div class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <h1 class="has-text-weight-bold">{{this.note.title}}</h1>
+                    </div>
                 </div>
-            </div>
-            <div class="level-left">
-                <div class="level-item">
-                    <p>{{#formatDate this.note.creation}}{{/formatDate}}</p>
+                <div class="level-left">
+                    <div class="level-item">
+                        <p>{{#formatDate this.note.creation}}{{/formatDate}}</p>
+                    </div>
+                    <div class="level-left note-column-note-options-button" note-id="{{this.note.id}}">
+                        <span class="icon"><i class="fas fa-cog"></i></span>
+                    </div>
                 </div>
             </div>
         </div>
-        {{!-- preview text here eventually --}}
+
+        <div class="dropdown-menu">
+            <div class="dropdown-content">
+                <a class="dropdown-item note-column-note-options-rename" note-id="{{this.note.id}}">Rename</a>
+                <a class="dropdown-item has-text-danger note-column-note-options-delete" note-id="{{this.note.id}}">Delete</a>
+            </div>
+        </div>
     </div>
     {{/each}}
 </div>
