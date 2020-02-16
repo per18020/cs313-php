@@ -3,6 +3,8 @@ class QuillObserver {
         this.store = store;
         this.quill = quill;
         this.init();
+
+        this.loadedDataFromStore = false;
     }
 
     init() {
@@ -11,14 +13,17 @@ class QuillObserver {
         let Delta = Quill.import('delta');
         let change = new Delta;
         this.quill.on('text-change', (delta) => {
-            change = change.compose(delta);
-            this.store.dispatch(updateSelectedNote({ data: JSON.stringify(this.quill.getContents()), last_edited: new Date().toISOString() }))
-            change = new Delta();
+            if (!this.loadedDataFromStore) {
+                change = change.compose(delta);
+                this.store.dispatch(updateSelectedNote({ data: JSON.stringify(this.quill.getContents()), last_edited: new Date().toISOString() }));
+            }
+            this.loadedDataFromStore = false;
         });
 
         setInterval(() => {
             if (change.length() > 0) {
                 saveCurrentNote().then(() => console.log("Saved"));
+                change = new Delta();
             }
         }, 2000);
     }
@@ -31,7 +36,9 @@ class QuillObserver {
             if (newData != oldData) { 
                 // Only set contents if the data coming from the state object is different than what's already in there. 
                 // This should only really run once when a note is loaded in.
+                this.loadedDataFromStore = true;
                 this.quill.setContents(JSON.parse(newData));
+                
             }
         }
     }
