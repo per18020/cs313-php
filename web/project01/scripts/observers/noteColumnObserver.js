@@ -14,7 +14,7 @@ class NoteColumnObserver {
             let sortedNotes = getNotesInSelectedFolderState()?.slice().sort((a, b) => {
                 let aa = new Date(a.note.last_edited);
                 let bb = new Date(b.note.last_edited);
-                return bb - aa;
+                return aa - bb;
             });
 
             buildNoteColumn({
