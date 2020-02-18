@@ -41,7 +41,7 @@ class NoteColumnObserver {
             input_id: "modal-create-note-input",
             button_id: "modal-create-note-button"
         }, () => {
-            addUniqueTrackedListener(document.getElementById("modal-create-note-button"), 'onclick', () => {
+            let submit = () => {
                 let user_id = getUserState().id;
                 let folder_id = getSelectedFolderState();
                 let note_title = document.getElementById("modal-create-note-input").value;
@@ -50,7 +50,11 @@ class NoteColumnObserver {
                 createNote(user_id, folder_id, note_title).then(() => {
                     this.store.dispatch(getNotesInFolder(user_id, folder_id));
                 });
+            }
+            addUniqueTrackedListener(document.getElementById('modal-create-note-input'), 'onkeyup', (event) => {
+                if (event.keyCode == 13) submit();
             });
+            addUniqueTrackedListener(document.getElementById("modal-create-note-button"), 'onclick', submit);
         });
     }
 
@@ -70,12 +74,16 @@ class NoteColumnObserver {
             button_id: "modal-rename-note-button",
             input_id: "modal-rename-note-input"
         }, () => {
-            addUniqueTrackedListener(document.getElementById('modal-rename-note-button'), 'onclick', () => {
+            let submit = () => {
                 let note_title = document.getElementById("modal-rename-note-input").value;
                 note_title = (note_title) ? note_title : "Untitled";
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
                 updateSelectedNote({ title: note_title });
+            }
+            addUniqueTrackedListener(document.getElementById('modal-rename-note-input'), 'onkeyup', (event) => {
+                if (event.keyCode == 13) submit();
             });
+            addUniqueTrackedListener(document.getElementById('modal-rename-note-button'), 'onclick', submit);
         });
     }
 

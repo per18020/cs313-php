@@ -82,7 +82,7 @@ class FolderColumnObserver {
             button_id: "modal-rename-folder-button",
             input_id: "modal-rename-folder-input"
         }, () => {
-            addUniqueTrackedListener(document.getElementById('modal-rename-folder-button'), 'onclick', () => {
+            let submit = () => {
                 let user_id = getUserState().id;
                 let folder_title = document.getElementById("modal-rename-folder-input").value;
                 folder_title = (folder_title) ? folder_title : "Untitled";
@@ -90,7 +90,11 @@ class FolderColumnObserver {
                 renameFolder(user_id, folder_id, folder_title).then(() => {
                     this.store.dispatch(getAllFolders(user_id));
                 });
+            }
+            addUniqueTrackedListener(document.getElementById('modal-rename-folder-input'), 'onkeyup', (event) => {
+                if (event.keyCode == 13) submit();
             });
+            addUniqueTrackedListener(document.getElementById('modal-rename-folder-button'), 'onclick', submit);
         });
     }
 
