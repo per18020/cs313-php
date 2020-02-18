@@ -33,7 +33,6 @@
 
     $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email=:email");
     $usersPDO->bindParam(":email", $email);
-    // $usersPDO->bindParam(":password", $password);
     $usersPDO->execute();
     
     while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {
