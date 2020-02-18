@@ -52,6 +52,7 @@ class FolderColumnObserver {
             form_id: "modal-create-folder-form"
         }, () => {
             document.getElementById("modal-create-folder-form").onsubmit = (event) => {
+                event.preventDefault();
                 let user_id = getUserState().id;
                 let folder_title = document.getElementById("modal-create-folder-input").value;
                 folder_title = (folder_title) ? folder_title : "Untitled";
@@ -60,8 +61,7 @@ class FolderColumnObserver {
                     this.store.dispatch(getAllFolders(user_id));
                 });
 
-                event.preventDefault();
-
+                console.log(event);
                 return false;
             }
         });
