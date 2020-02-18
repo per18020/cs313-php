@@ -31,16 +31,18 @@
         exit;
     }
 
-    $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email=:email AND password=:password");
+    $usersPDO = $db->prepare("SELECT * FROM public.user WHERE email=:email");
     $usersPDO->bindParam(":email", $email);
-    $usersPDO->bindParam(":password", $password);
+    // $usersPDO->bindParam(":password", $password);
     $usersPDO->execute();
     
     while ($row = $usersPDO->fetch(PDO::FETCH_ASSOC)) {
-        $response->user->id = $row["id"];
-        $response->user->email = $row["email"];
-        $response->user->username = $row["username"];
-        $response->authenticated = true;
+        if (password_verify($password, $row["password"])) {
+            $response->user->id = $row["id"];
+            $response->user->email = $row["email"];
+            $response->user->username = $row["username"];
+            $response->authenticated = true;
+        }
     }
 
     if ($response->authenticated) {

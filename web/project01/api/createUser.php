@@ -5,7 +5,7 @@ error_reporting(0); // Turn off error reporting. I'll handle my own errors with 
 $input = json_decode(file_get_contents('php://input'));
 $email = htmlspecialchars($input->email);
 $username = htmlspecialchars($input->username);
-$password = htmlspecialchars($input->password);
+$password = password_hash(htmlspecialchars($input->password), PASSWORD_DEFAULT);
 
 $response = new stdClass();
 $response->error = false;
