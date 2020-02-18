@@ -19,7 +19,7 @@ if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
 
     <link rel="stylesheet" href="/lib/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <link rel="stylesheet" href="/project01/lib/style/quillBubble.css">
 
     <link rel="stylesheet" href="/project01/style/app.css">
     <link rel="stylesheet" href="/project01/style/editor.css">
@@ -53,7 +53,7 @@ if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
                 <!-- Searchbar -->
                 <div class="field">
                     <div class="control is-expanded">
-                        <input class="input" type="text" placeholder="Search Notes">
+                        <input id="note-searchbar" class="input" type="text" placeholder="Search Notes">
                     </div>
                 </div>
                 <div id="note-column-target"></div>
@@ -67,6 +67,8 @@ if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
 
     <!-- Util -->
     <script src="/project01/scripts/utilities/util.js"></script>
+    <!-- Fuzzysort -->
+    <script src="/project01/lib/fuzzysort.js"></script>
     <!-- Handlebars -->
     <script src="/project01/lib/handlebars.min-v4.7.2.js"></script>
     <script src="/project01/scripts/build/templates.js"></script>

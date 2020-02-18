@@ -2,6 +2,7 @@ class NoteColumnObserver {
     constructor(store, documentClickHandler) {
         this.store = store;
         this.documentClickHandler = documentClickHandler;
+        this.searchBar = document.getElementById('note-searchbar');
         this.init();
 
         this.activeNoteOptions = null;
@@ -9,15 +10,27 @@ class NoteColumnObserver {
 
     init() {
         this.store.subscribe(this.handleChange.bind(this));
+        addUniqueTrackedListener(this.searchBar, 'oninput', this.handleChange.bind(this));
     }
 
     handleChange() {
         let notes = getNotesInSelectedFolderState();
+        let sortedNotes = [];
         if (notes) {
-            var sortedNotes = getNotesInSelectedFolderState().slice().sort((a, b) => {
-                return new Date(b.note.last_edited) - new Date(a.note.last_edited);
-            });
+            if (this.searchBar.value != "") {
+                let results = fuzzysort.go(this.searchBar.value.trim(), notes, {
+                    key: 'note.title'
+                });
+                for (let i = 0; i < results.length; i++) {
+                    sortedNotes.push(results[i].obj);
+                }
+            } else {
+                sortedNotes = notes.slice().sort((a, b) => {
+                    return new Date(b.note.last_edited) - new Date(a.note.last_edited);
+                });
+            }
         }
+
         buildNoteColumn({
             isFolder: getSelectedFolderState() > 0, // Only show Create Note button in folders, not all notes or trash
             notes: sortedNotes,
