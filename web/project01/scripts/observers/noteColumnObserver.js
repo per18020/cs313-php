@@ -22,7 +22,12 @@ class NoteColumnObserver {
                     key: 'note.title'
                 });
                 for (let i = 0; i < results.length; i++) {
-                    sortedNotes.push(results[i].obj);
+                    let sortedNote = results[i].obj;
+                    sortedNote.selected = false;
+                    sortedNotes.push(sortedNote);
+                }
+                if (sortedNotes.length) {
+                    sortedNotes[0].selected = true;
                 }
             } else {
                 sortedNotes = notes.slice().sort((a, b) => {
