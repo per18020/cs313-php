@@ -14,8 +14,10 @@
     </div>
     {{/if}}
     {{#each notes}}
-    <div class="dropdown is-right note-column-note-options-dropdown {{#is ../activeNoteOptions this.note.id}}is-active{{/is}}" note-id="{{this.note.id}}">
-        <div class="dropdown-trigger note-column-item note-column-note {{#if this.selected}}is-active{{/if}}" note-id="{{this.note.id}}">
+    <div class="dropdown is-right note-column-note-options-dropdown {{#is ../activeNoteOptions this.note.id}}is-active{{/is}}"
+        note-id="{{this.note.id}}">
+        <div class="dropdown-trigger note-column-item note-column-note {{#if this.selected}}is-active{{/if}}"
+            note-id="{{this.note.id}}">
             <div class="level">
                 <div class="level-left">
                     <div class="level-item">
@@ -36,9 +38,20 @@
         <div class="dropdown-menu">
             <div class="dropdown-content">
                 <a class="dropdown-item note-column-note-options-rename" note-id="{{this.note.id}}">Rename</a>
-                <a class="dropdown-item has-text-danger note-column-note-options-delete" note-id="{{this.note.id}}">Delete</a>
+                <a class="dropdown-item has-text-danger note-column-note-options-delete"
+                    note-id="{{this.note.id}}">Delete</a>
             </div>
         </div>
     </div>
     {{/each}}
+    {{#if this.emptyFolder}}
+    <div class="note-column-text">
+        This collection is empty, try adding some notes to it.
+    </div>
+    {{/if}}
+    {{#if this.noSearchResults}}
+    <div class="note-column-text">
+        No results.
+    </div>
+    {{/if}}
 </div>

@@ -16,30 +16,33 @@ class NoteColumnObserver {
     handleChange() {
         let notes = getNotesInSelectedFolderState();
         let sortedNotes = [];
+
+        let emptyFolder = false;
+        let noSearchResults = false;
+
         if (notes) {
             if (this.searchBar.value != "") {
                 let results = fuzzysort.go(this.searchBar.value.trim(), notes, {
                     key: 'note.title'
                 });
                 for (let i = 0; i < results.length; i++) {
-                    let sortedNote = results[i].obj;
-                    sortedNote.selected = false;
-                    sortedNotes.push(sortedNote);
+                    sortedNotes.push(results[0].obj);
                 }
-                if (sortedNotes.length) {
-                    sortedNotes[0].selected = true;
-                }
+                noSearchResults = sortedNotes.length == 0;
             } else {
                 sortedNotes = notes.slice().sort((a, b) => {
                     return new Date(b.note.last_edited) - new Date(a.note.last_edited);
                 });
+                emptyFolder = notes.length == 0;
             }
         }
 
         buildNoteColumn({
             isFolder: getSelectedFolderState() > 0, // Only show Create Note button in folders, not all notes or trash
             notes: sortedNotes,
-            activeNoteOptions: this.activeNoteOptions
+            activeNoteOptions: this.activeNoteOptions,
+            emptyFolder,
+            noSearchResults
         }, () => {
             this.buildEventListeners();
         });
