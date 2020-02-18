@@ -1,6 +1,6 @@
 -- User Table
 
-INSERT INTO public.user (email, username, password) VALUES ('per18020@byui.edu', 'per18020', 'oatmeal');
+-- INSERT INTO public.user (email, username, password) VALUES ('per18020@byui.edu', 'per18020', 'oatmeal');
 
 -- -- Folder Table
 
