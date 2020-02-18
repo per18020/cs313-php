@@ -48,9 +48,10 @@ class FolderColumnObserver {
     handleCreateFolderClick() {
         buildCreateFolderModal({
             button_id: "modal-create-folder-button",
-            input_id: "modal-create-folder-input"
+            input_id: "modal-create-folder-input",
+            form_id: "modal-create-folder-form"
         }, () => {
-            addUniqueTrackedListener(document.getElementById("modal-create-folder-button"), 'onclick', () => {
+            document.getElementById("modal-create-folder-form").onsubmit = () => {
                 let user_id = getUserState().id;
                 let folder_title = document.getElementById("modal-create-folder-input").value;
                 folder_title = (folder_title) ? folder_title : "Untitled";
@@ -58,7 +59,8 @@ class FolderColumnObserver {
                 createFolder(user_id, folder_title).then(() => {
                     this.store.dispatch(getAllFolders(user_id));
                 });
-            })
+                return false;
+            }
         });
     }
 
