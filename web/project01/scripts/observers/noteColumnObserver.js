@@ -74,7 +74,7 @@ class NoteColumnObserver {
                 dropdown_item_class: "all-notes-modal-dropdown-menu-items",
                 folders,
                 selectedFolderTitle: folders[0].title,
-                selectedFolderId: folders[0].title
+                selectedFolderId: folders[0].id
             }, () => {
                 let submit = () => {
                     let note_title = document.getElementById("modal-create-note-all-notes-input").value;
