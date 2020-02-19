@@ -69,6 +69,8 @@ if (!isset($_SESSION["isAuthenticated"]) && getenv('DATABASE_URL')) {
     <script src="/project01/scripts/utilities/util.js"></script>
     <!-- Fuzzysort -->
     <script src="/project01/lib/fuzzysort.js"></script>
+    <!-- Momentjs -->
+    <script src="/project01/lib/momentjs.min.js"></script>
     <!-- Handlebars -->
     <script src="/project01/lib/handlebars.min-v4.7.2.js"></script>
     <script src="/project01/scripts/build/templates.js"></script>
