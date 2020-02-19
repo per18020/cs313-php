@@ -125,7 +125,7 @@ class NoteColumnObserver {
                     if (getSelectedFolderState() == 0) {
                         this.store.dispatch(getAllNotes(user_id));
                     } else {
-                        this.store.dispatch(getNotesInFolder(user_id, getSelectedFolderState()));
+                        this.store.dispatch(getAllNotesInFolders(user_id));
                     }  
                 });
             });
