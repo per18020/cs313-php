@@ -79,7 +79,7 @@ class NoteColumnObserver {
                 let submit = () => {
                     let note_title = document.getElementById("modal-create-note-all-notes-input").value;
                     note_title = (note_title) ? note_title : "Untitled";
-                    folder_id = parseInt(document.getElementById("all-notes-modal-dropdown-selected-folder").getAttribute("folder-id"));
+                    let folder_id = parseInt(document.getElementById("all-notes-modal-dropdown-selected-folder").getAttribute("folder-id"));
                     document.getElementById("modal-target").parentNode.classList.remove("is-active");
                     createNote(user_id, folder_id, note_title).then(() => {
                         this.store.dispatch(getAllNotesInFolders(user_id));
