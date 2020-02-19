@@ -102,7 +102,9 @@ class NoteColumnObserver {
                 let note_title = document.getElementById("modal-rename-note-input").value;
                 note_title = (note_title) ? note_title : "Untitled";
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
-                updateSelectedNote({ title: note_title });
+                updateSelectedNote({ title: note_title }).then(() => {
+                    this.store.dispatch(getAllNotes(getUserState().id));
+                });
             }
             addUniqueTrackedListener(document.getElementById('modal-rename-note-input'), 'onkeyup', (event) => {
                 if (event.keyCode == 13) submit();
