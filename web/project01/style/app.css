@@ -188,7 +188,7 @@ body {
 }
 
 .note-column-note-title {
-    width: 160px;
+    width: 130px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
