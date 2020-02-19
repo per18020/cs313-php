@@ -105,13 +105,13 @@ class NoteColumnObserver {
                 note_title = (note_title) ? note_title : "Untitled";
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
 
-                saveNote(note_id).then(() => {
+                saveCurrentNote().then(() => {
                     if (folder_id == 0) {
                         this.store.dispatch(getAllNotes(user_id));
                     } else {
                         this.store.dispatch(getAllNotesInFolders(user_id));
                     }
-                })
+                });
             }
             addUniqueTrackedListener(document.getElementById('modal-rename-note-input'), 'onkeyup', (event) => {
                 if (event.keyCode == 13) submit();

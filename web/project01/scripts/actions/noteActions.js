@@ -101,17 +101,6 @@ function updateSelectedNote(options = {}) {
     return { type: "" };
 }
 
-function updateNote(note_id, options = {}) {
-    let selectedNote = getNoteState(note_id);
-    if (selectedNote) {
-        selectedNote.title = (options.title) ? options.title : selectedNote.title;
-        selectedNote.data = (options.data) ? options.data : selectedNote.data;
-        selectedNote.last_edited = (options.last_edited) ? options.last_edited : selectedNote.last_edited;
-        return { type: UPDATE_SELECTED_NOTE, payload: { selected: true, note: selectedNote } };
-    }
-    return { type: "" };
-}
-
 function saveCurrentNote() {
     let noteState = getSelectedNoteState();
     if (noteState) {
