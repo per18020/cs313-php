@@ -30,7 +30,7 @@ if (isset($_SESSION["isAuthenticated"])) {
             <div class="container">
                 <div class="columns is-centered">
                     <div class="column is-8-tablet is-6-widescreen">
-                        <form onsubmit="return login();" class="box" name="mainForm">
+                        <form onsubmit="return login();" class="box" name="mainForm" autocomplete="off">
                             <div class="section">
                                 <div class="title">Sign up</div>
                                 <div class="field">
