@@ -107,6 +107,10 @@ class NoteColumnObserver {
                         dropdownSelectedFolder.innerHTML = folder_title;
                     });
                 }
+                addUniqueTrackedListener(document.getElementById('modal-create-note-all-notes-input'), 'onkeyup', (event) => {
+                    if (event.keyCode == 13) submit();
+                });
+                addUniqueTrackedListener(document.getElementById("modal-create-note-all-notes-button"), 'onclick', submit);
             });
         } else {
             buildCreateNoteModal({
