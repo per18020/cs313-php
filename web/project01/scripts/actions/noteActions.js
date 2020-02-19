@@ -101,6 +101,17 @@ function updateSelectedNote(options = {}) {
     return { type: "" };
 }
 
+function updateNote(note_id, options = {}) {
+    let selectedNote = getNoteState(note_id);
+    if (selectedNote) {
+        selectedNote.title = (options.title) ? options.title : selectedNote.title;
+        selectedNote.data = (options.data) ? options.data : selectedNote.data;
+        selectedNote.last_edited = (options.last_edited) ? options.last_edited : selectedNote.last_edited;
+        return { type: UPDATE_SELECTED_NOTE, payload: { selected: true, note: selectedNote } };
+    }
+    return { type: "" };
+}
+
 function saveCurrentNote() {
     let noteState = getSelectedNoteState();
     if (noteState) {
@@ -114,3 +125,17 @@ function saveCurrentNote() {
     }
     return Promise.resolve();
 } 
+
+function saveNote(note_id) {
+    let noteState = getNoteState(note_id);
+    if (noteState) {
+        let user_id = getUserState().id;
+        let note_id = noteState.id;
+        let folder_id = noteState.folder_id;
+        let note_title = noteState.title;
+        let last_edited = noteState.last_edited;
+        let note_data = JSON.stringify(noteState.data);
+        return updateNote(user_id, note_id, folder_id, note_title, last_edited, note_data);
+    }
+    return Promise.resolve();
+}

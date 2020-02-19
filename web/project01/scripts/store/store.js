@@ -43,3 +43,12 @@ function getSelectedNoteState() {
     });
     return noteObj ? noteObj.note : noteObj;
 }
+
+function getNoteState(note_id) {
+    let notes = getNotesInSelectedFolderState();
+    if (!notes) return;
+    let noteObj = notes.find((obj) => {
+        return obj.note.id == note_id;
+    });
+    return noteObj ? noteObj.note : noteObj;
+}
