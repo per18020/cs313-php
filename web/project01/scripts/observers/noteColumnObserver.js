@@ -90,7 +90,7 @@ class NoteColumnObserver {
         }
     }
 
-    handleNoteOptionsRenameClick(note_id) {
+    handleNoteOptionsRenameClick() {
         this.activeNoteOptions = null;
         let current_note_title = getSelectedNoteState().title;
         buildRenameNoteModal({
@@ -99,19 +99,10 @@ class NoteColumnObserver {
             input_id: "modal-rename-note-input"
         }, () => {
             let submit = () => {
-                let user_id = getUserState().id;
-                let folder_id = getSelectedFolderState();
                 let note_title = document.getElementById("modal-rename-note-input").value;
                 note_title = (note_title) ? note_title : "Untitled";
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
-
-                saveCurrentNote().then(() => {
-                    if (folder_id == 0) {
-                        this.store.dispatch(getAllNotes(user_id));
-                    } else {
-                        this.store.dispatch(getAllNotesInFolders(user_id));
-                    }
-                });
+                updateSelectedNote({ title: note_title })
             }
             addUniqueTrackedListener(document.getElementById('modal-rename-note-input'), 'onkeyup', (event) => {
                 if (event.keyCode == 13) submit();
@@ -173,7 +164,7 @@ class NoteColumnObserver {
         for (let i = 0; i < optionButtonsRename.length; i++) {
             let button = optionButtonsRename[i];
             let note_id = button.getAttribute('note-id');
-            addUniqueTrackedListener(button, 'onclick', this.handleNoteOptionsRenameClick.bind(this, note_id));
+            addUniqueTrackedListener(button, 'onclick', this.handleNoteOptionsRenameClick.bind(this));
         }
 
         let optionButtonsDelete = document.getElementsByClassName('note-column-note-options-delete');
