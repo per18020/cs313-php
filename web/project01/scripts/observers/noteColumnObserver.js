@@ -72,7 +72,7 @@ class NoteColumnObserver {
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
                 createNote(user_id, folder_id, note_title).then(() => {
                     this.store.dispatch(getNotesInFolder(user_id, folder_id));
-                    this.store.dispatch(getAllNotes(getUserState().id));
+                    this.store.dispatch(getAllNotes(user_id));
                 });
             }
             addUniqueTrackedListener(document.getElementById('modal-create-note-input'), 'onkeyup', (event) => {
