@@ -21,11 +21,6 @@
         require "dbConnect.php";
         $db = get_db();
     } catch (Exception $e) {
-        // Dummy folder for testing, remove before production
-        $folder = new stdClass();
-        $folder->id = 1;
-        $folder->title = "Folder";
-        array_push($response->folders, $folder);
         $response->error = true;
         echo json_encode($response);
         exit;

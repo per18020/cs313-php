@@ -7,7 +7,7 @@
     $response = new stdClass();
     $response->id = $user_id;
     $response->email = "email";
-    $response->username = "username";
+    $response->username = "no database";
     $response->error = false;
 
     $db = NULL;
