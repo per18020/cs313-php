@@ -26,7 +26,9 @@ class NoteColumnObserver {
                     key: 'note.title'
                 });
                 for (let i = 0; i < results.length; i++) {
-                    sortedNotes.push(results[0].obj);
+                    if (!sortedNotes.find((obj) => { return obj.note.id == results[0].obj.note.id; })) {
+                        sortedNotes.push(results[0].obj);
+                    }
                 }
                 noSearchResults = sortedNotes.length == 0;
             } else {
