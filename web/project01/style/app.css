@@ -187,6 +187,12 @@ body {
     text-align: center;
 }
 
+.note-column-note-title {
+    width: 125px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 #note-column-add-note {
     color: #a7abb3;
     padding-left: 0;
