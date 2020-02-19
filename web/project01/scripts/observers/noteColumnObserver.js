@@ -122,8 +122,11 @@ class NoteColumnObserver {
                 let user_id = getUserState().id;
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
                 deleteNote(user_id, note_id).then(() => {
-                    this.store.dispatch(getNotesInFolder(user_id, getSelectedFolderState()));
-                    this.store.dispatch(getAllNotes(user_id));
+                    if (getSelectedFolderState() == 0) {
+                        this.store.dispatch(getAllNotes(user_id));
+                    } else {
+                        this.store.dispatch(getNotesInFolder(user_id, getSelectedFolderState()));
+                    }  
                 });
             });
             addUniqueTrackedListener(document.getElementById("modal-delete-note-cancel-button"), 'onclick', () => {
