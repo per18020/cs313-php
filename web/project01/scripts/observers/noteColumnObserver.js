@@ -171,6 +171,7 @@ class NoteColumnObserver {
                 this.store.dispatch(updateSelectedNote({ title: note_title }));
                 saveCurrentNote().then(() => {
                     this.store.dispatch(getAllNotes(getUserState().id));
+                    this.store.dispatch(getAllNotesInFolders(getUserState().id));
                 });
             }
             addUniqueTrackedListener(document.getElementById('modal-rename-note-input'), 'onkeyup', (event) => {
@@ -192,11 +193,8 @@ class NoteColumnObserver {
                 let user_id = getUserState().id;
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
                 deleteNote(user_id, note_id).then(() => {
-                    if (getSelectedFolderState() == 0) {
-                        this.store.dispatch(getAllNotes(user_id));
-                    } else {
-                        this.store.dispatch(getAllNotesInFolders(user_id));
-                    }  
+                    this.store.dispatch(getAllNotes(user_id));
+                    this.store.dispatch(getAllNotesInFolders(user_id));
                 });
             });
             addUniqueTrackedListener(document.getElementById("modal-delete-note-cancel-button"), 'onclick', () => {
