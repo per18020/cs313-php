@@ -128,6 +128,7 @@ function saveCurrentNote() {
 
 function saveNote(note_id) {
     let noteState = getNoteState(note_id);
+    console.log(noteState);
     if (noteState) {
         let user_id = getUserState().id;
         let note_id = noteState.id;
