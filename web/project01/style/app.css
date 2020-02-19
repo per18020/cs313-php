@@ -15,6 +15,15 @@ body {
     height: 100vh;
 }
 
+#modal-target {
+    overflow: unset;
+}
+
+#modal-target .dropdown-content {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
 /* Edit bulma classes to make them do what I want them to do */
 
 .column {
@@ -35,6 +44,8 @@ body {
     max-height: 100%;
     overflow: auto;
 }
+
+
 
 /* Tell Quill not to scroll */
 

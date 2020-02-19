@@ -61,13 +61,52 @@ class NoteColumnObserver {
 
     handleAddNoteClick() {
         let user_id = getUserState().id;
-        let folder_id = getSelectedFolderState();
-        if (folder_id == 0) {
+        let selected_folder_id = getSelectedFolderState();
+        let folders = getFoldersState();
+        if (selected_folder_id == 0) {
             buildCreateNoteAllNotesModal({
                 input_id: "modal-create-note-all-notes-input",
-                button_id: "modal-create-note-all-notes-button"
+                button_id: "modal-create-note-all-notes-button",
+                dropdown_id: "all-notes-modal-dropdown-menu",
+                selected_folder_id: "all-notes-modal-dropdown-selected-folder",
+                dropdown_target_id: "all-notes-modal-dropdown-trigger",
+                dropdown_id: "all-notes-modal-dropdown",
+                dropdown_item_class: "all-notes-modal-dropdown-menu-items",
+                folders,
+                selectedFolderTitle: folders[0].title,
+                selectedFolderId: folders[0].title
             }, () => {
-
+                let submit = () => {
+                    let note_title = document.getElementById("modal-create-note-all-notes-input").value;
+                    note_title = (note_title) ? note_title : "Untitled";
+                    folder_id = parseInt(document.getElementById("all-notes-modal-dropdown-selected-folder").getAttribute("folder-id"));
+                    document.getElementById("modal-target").parentNode.classList.remove("is-active");
+                    createNote(user_id, folder_id, note_title).then(() => {
+                        this.store.dispatch(getAllNotesInFolders(user_id));
+                        this.store.dispatch(getAllNotes(user_id));
+                    });
+                }
+                addUniqueTrackedListener(document.getElementById('all-notes-modal-dropdown-trigger'), 'onclick', () => {
+                    let dropdown = document.getElementById("all-notes-modal-dropdown");
+                    if (dropdown.classList.contains('is-active')) {
+                        dropdown.classList.remove('is-active');
+                    } else {
+                        dropdown.classList.add('is-active');
+                    }
+                });
+                let dropdownItems = document.getElementsByClassName("all-notes-modal-dropdown-menu-items");
+                for (let i = 0; i < dropdownItems.length; i++) {
+                    let dropdownItem = dropdownItems[0];
+                    addUniqueTrackedListener(dropdownItem, 'onclick', () => {
+                        let folder_id = dropdownItem.getAttribute("folder-id");
+                        let folder_title = dropdownItem.innerHTML;
+                        let dropdown = document.getElementById("all-notes-modal-dropdown");
+                        dropdown.classList.remove('is-active');
+                        let dropdownSelectedFolder = document.getElementById("all-notes-modal-dropdown-selected-folder");
+                        dropdownSelectedFolder.setAttribute("folder-id", folder_id);
+                        dropdownSelectedFolder.innerHTML = folder_title;
+                    });
+                }
             });
         } else {
             buildCreateNoteModal({
@@ -75,12 +114,11 @@ class NoteColumnObserver {
                 button_id: "modal-create-note-button"
             }, () => {
                 let submit = () => {
-    
                     let note_title = document.getElementById("modal-create-note-input").value;
                     note_title = (note_title) ? note_title : "Untitled";
                     document.getElementById("modal-target").parentNode.classList.remove("is-active");
-                    createNote(user_id, folder_id, note_title).then(() => {
-                        this.store.dispatch(getNotesInFolder(user_id, folder_id));
+                    createNote(user_id, selected_folder_id, note_title).then(() => {
+                        this.store.dispatch(getNotesInFolder(user_id, selected_folder_id));
                         this.store.dispatch(getAllNotes(user_id));
                     });
                 }
