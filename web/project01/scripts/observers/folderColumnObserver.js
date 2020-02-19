@@ -106,7 +106,7 @@ class FolderColumnObserver {
             folder_title,
             delete_button_id: "modal-delete-folder-delete-button",
             cancel_button_id: "modal-delete-folder-cancel-button",
-            note_count: notes.length
+            note_count: notes ? notes.length : 0
         }, () => {
             addUniqueTrackedListener(document.getElementById("modal-delete-folder-delete-button"), 'onclick', () => {
                 let user_id = getUserState().id;
