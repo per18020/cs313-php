@@ -59,62 +59,73 @@ class NoteColumnObserver {
         this.handleChange();
     }
 
+    buildCreateNoteAllNotesModalHelper() {
+        let user_id = getUserState().id;
+        let folders = getFoldersState();
+        buildCreateNoteAllNotesModal({
+            input_id: "modal-create-note-all-notes-input",
+            button_id: "modal-create-note-all-notes-button",
+            dropdown_id: "all-notes-modal-dropdown-menu",
+            selected_folder_id: "all-notes-modal-dropdown-selected-folder",
+            dropdown_target_id: "all-notes-modal-dropdown-trigger",
+            dropdown_id: "all-notes-modal-dropdown",
+            dropdown_item_class: "all-notes-modal-dropdown-menu-items",
+            folders,
+            selectedFolderTitle: folders[0].title,
+            selectedFolderId: folders[0].id
+        }, () => {
+            let submit = () => {
+                let note_title = document.getElementById("modal-create-note-all-notes-input").value;
+                note_title = (note_title) ? note_title : "Untitled";
+                let folder_id = parseInt(document.getElementById("all-notes-modal-dropdown-selected-folder").getAttribute("folder-id"));
+                document.getElementById("modal-target").parentNode.classList.remove("is-active");
+                createNote(user_id, folder_id, note_title).then(() => {
+                    this.store.dispatch(getAllNotesInFolders(user_id));
+                    this.store.dispatch(getAllNotes(user_id));
+                });
+            }
+            addUniqueTrackedListener(document.getElementById('all-notes-modal-dropdown-trigger'), 'onclick', () => {
+                let dropdown = document.getElementById("all-notes-modal-dropdown");
+                if (dropdown.classList.contains('is-active')) {
+                    dropdown.classList.remove('is-active');
+                } else {
+                    dropdown.classList.add('is-active');
+                }
+            });
+            let dropdownItems = document.getElementsByClassName("all-notes-modal-dropdown-menu-items");
+            for (let i = 0; i < dropdownItems.length; i++) {
+                let dropdownItem = dropdownItems[i];
+                addUniqueTrackedListener(dropdownItem, 'onclick', () => {
+                    let folder_id = dropdownItem.getAttribute("folder-id");
+                    let folder_title = dropdownItem.innerHTML;
+                    let dropdown = document.getElementById("all-notes-modal-dropdown");
+                    dropdown.classList.remove('is-active');
+                    let dropdownSelectedFolder = document.getElementById("all-notes-modal-dropdown-selected-folder");
+                    dropdownSelectedFolder.setAttribute("folder-id", folder_id);
+                    dropdownSelectedFolder.innerHTML = folder_title;
+                });
+            }
+            addUniqueTrackedListener(document.getElementById('modal-create-note-all-notes-input'), 'onkeyup', (event) => {
+                if (event.keyCode == 13) submit();
+            });
+            addUniqueTrackedListener(document.getElementById("modal-create-note-all-notes-button"), 'onclick', submit);
+        });
+    }
+
     handleAddNoteClick() {
         let user_id = getUserState().id;
         let selected_folder_id = getSelectedFolderState();
         let folders = getFoldersState();
-        if (folders) {
-            console.log("ran");
-        }
         if (selected_folder_id == 0) {
-            buildCreateNoteAllNotesModal({
-                input_id: "modal-create-note-all-notes-input",
-                button_id: "modal-create-note-all-notes-button",
-                dropdown_id: "all-notes-modal-dropdown-menu",
-                selected_folder_id: "all-notes-modal-dropdown-selected-folder",
-                dropdown_target_id: "all-notes-modal-dropdown-trigger",
-                dropdown_id: "all-notes-modal-dropdown",
-                dropdown_item_class: "all-notes-modal-dropdown-menu-items",
-                folders,
-                selectedFolderTitle: folders[0].title,
-                selectedFolderId: folders[0].id
-            }, () => {
-                let submit = () => {
-                    let note_title = document.getElementById("modal-create-note-all-notes-input").value;
-                    note_title = (note_title) ? note_title : "Untitled";
-                    let folder_id = parseInt(document.getElementById("all-notes-modal-dropdown-selected-folder").getAttribute("folder-id"));
-                    document.getElementById("modal-target").parentNode.classList.remove("is-active");
-                    createNote(user_id, folder_id, note_title).then(() => {
-                        this.store.dispatch(getAllNotesInFolders(user_id));
-                        this.store.dispatch(getAllNotes(user_id));
-                    });
-                }
-                addUniqueTrackedListener(document.getElementById('all-notes-modal-dropdown-trigger'), 'onclick', () => {
-                    let dropdown = document.getElementById("all-notes-modal-dropdown");
-                    if (dropdown.classList.contains('is-active')) {
-                        dropdown.classList.remove('is-active');
-                    } else {
-                        dropdown.classList.add('is-active');
-                    }
+            if (!folders.length) {
+                createFolder(user_id, "Untitled").then(() => {
+                    return this.store.dispatch(getAllFolders(user_id));
+                }).then(() => {
+                    this.buildCreateNoteAllNotesModalHelper();
                 });
-                let dropdownItems = document.getElementsByClassName("all-notes-modal-dropdown-menu-items");
-                for (let i = 0; i < dropdownItems.length; i++) {
-                    let dropdownItem = dropdownItems[i];
-                    addUniqueTrackedListener(dropdownItem, 'onclick', () => {
-                        let folder_id = dropdownItem.getAttribute("folder-id");
-                        let folder_title = dropdownItem.innerHTML;
-                        let dropdown = document.getElementById("all-notes-modal-dropdown");
-                        dropdown.classList.remove('is-active');
-                        let dropdownSelectedFolder = document.getElementById("all-notes-modal-dropdown-selected-folder");
-                        dropdownSelectedFolder.setAttribute("folder-id", folder_id);
-                        dropdownSelectedFolder.innerHTML = folder_title;
-                    });
-                }
-                addUniqueTrackedListener(document.getElementById('modal-create-note-all-notes-input'), 'onkeyup', (event) => {
-                    if (event.keyCode == 13) submit();
-                });
-                addUniqueTrackedListener(document.getElementById("modal-create-note-all-notes-button"), 'onclick', submit);
-            });
+            } else {
+                this.buildCreateNoteAllNotesModalHelper();
+            }
         } else {
             buildCreateNoteModal({
                 input_id: "modal-create-note-input",
