@@ -101,10 +101,12 @@ class FolderColumnObserver {
     handleFolderOptionsDeleteClick(folder_id) {
         this.activeFolderOptions = null;
         let folder_title = getFolderState(folder_id).title;
+        let notes = getNotesInSelectedFolderState();
         buildDeleteFolderModal({
             folder_title,
             delete_button_id: "modal-delete-folder-delete-button",
-            cancel_button_id: "modal-delete-folder-cancel-button"
+            cancel_button_id: "modal-delete-folder-cancel-button",
+            note_count: notes.length
         }, () => {
             addUniqueTrackedListener(document.getElementById("modal-delete-folder-delete-button"), 'onclick', () => {
                 let user_id = getUserState().id;

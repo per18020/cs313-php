@@ -1,7 +1,10 @@
 <div>
     <div class="box">
         <div class="title">Delete Collection</div>
-        <div class="subtitle">Are you sure you want to delete {{this.folder_title}}? <strong>5 Notes contained inside {{this.folder_title}} will also be deleted</strong> </div>
+        <div class="subtitle">Are you sure you want to delete {{this.folder_title}}?</div>
+        {{#if this.note_count}}
+        <div class="subtitle has-text-danger"><strong>{{this.note_count}} notes contained inside {{this.folder_title}} will also be deleted!</strong></div>
+        {{/if}}
         <div class="field is-grouped">
             <div class="control">
                 <div id="{{this.delete_button_id}}" class="button is-danger">Delete {{this.folder_title}}</div>
