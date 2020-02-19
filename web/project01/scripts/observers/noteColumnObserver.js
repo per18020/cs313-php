@@ -105,9 +105,8 @@ class NoteColumnObserver {
                 note_title = (note_title) ? note_title : "Untitled";
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
 
-                this.store.dispatch(updateNote(note_id, { title: note_title })).then(() => {
-                    saveNote(note_id);
-                });
+                this.store.dispatch(updateNote(note_id, { title: note_title }));
+                saveNote(note_id);
             }
             addUniqueTrackedListener(document.getElementById('modal-rename-note-input'), 'onkeyup', (event) => {
                 if (event.keyCode == 13) submit();
