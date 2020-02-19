@@ -122,6 +122,7 @@ class NoteColumnObserver {
                 let user_id = getUserState().id;
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
                 deleteNote(user_id, note_id).then(() => {
+                    this.store.dispatch(getAllNotes(user_id));
                     this.store.dispatch(getNotesInFolder(user_id, getSelectedFolderState()));
                 });
             });
