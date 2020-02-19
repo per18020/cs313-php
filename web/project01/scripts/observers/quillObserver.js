@@ -31,6 +31,7 @@ class QuillObserver {
     handleChange() {
         let selectedNote = getSelectedNoteState();
         if (selectedNote) {
+            this.quill.enable();
             let newData = formatJSONString(selectedNote.data);
             let oldData = JSON.stringify(this.quill.getContents());
             if (newData != oldData) { 
@@ -40,6 +41,8 @@ class QuillObserver {
                 this.quill.setContents(JSON.parse(newData));
                 this.quill.setSelection(0, 0);
             }
+        } else {
+            this.quill.disable();
         }
     }
 }
