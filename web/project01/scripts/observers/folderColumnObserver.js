@@ -23,7 +23,13 @@ class FolderColumnObserver {
     }
 
     handleFolderButtonClick(folder_id) {
-        this.store.dispatch(selectFolder(folder_id));
+        if (folder_id == 0) {
+            this.store.dispatch(getAllNotes(getUserState().id)).then(() => {
+                this.store.dispatch(selectFolder(folder_id));
+            })
+        } else {
+            this.store.dispatch(selectFolder(folder_id));
+        }
     }
 
     handleUserButtonClick() {
