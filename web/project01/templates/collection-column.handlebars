@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    <div class="collection-column-item collection-button {{#is this.selectedFolder -1}}is-active{{/is}}" folder-id="-1">
+    {{!-- <div class="collection-column-item collection-button {{#is this.selectedFolder -1}}is-active{{/is}}" folder-id="-1">
         <div class="level">
             <div class="level-left">
                 <div class="level-item">
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="collection-column-spacer"></div>
     {{#each this.folders}}
     <div class="dropdown collection-column-collection-options-dropdown {{#is ../activeFolderOptions this.id}}is-active{{/is}}" folder-id="{{this.id}}">
