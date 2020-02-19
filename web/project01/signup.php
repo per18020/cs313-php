@@ -36,7 +36,7 @@ if (isset($_SESSION["isAuthenticated"])) {
                                 <div class="field">
                                     <label class="label">Email</label>
                                     <div class="control has-icons-left">
-                                        <input name="email" type="email" class="input" required>
+                                        <input name="email" type="email" class="input" required autocomplete="off">
                                         <span class="icon is-small is-left">
                                             <i class="fa fa-envelope"></i>
                                         </span>
@@ -45,7 +45,7 @@ if (isset($_SESSION["isAuthenticated"])) {
                                 <div class="field">
                                     <label class="label">Username</label>
                                     <div class="control has-icons-left">
-                                        <input name="username" type="text" class="input" required maxlength="25">
+                                        <input name="username" type="text" class="input" required maxlength="25" autocomplete="off">
                                         <span class="icon is-small is-left">
                                             <i class="fa fa-user"></i>
                                         </span>
@@ -54,7 +54,7 @@ if (isset($_SESSION["isAuthenticated"])) {
                                 <div class="field">
                                     <label class="label">Password</label>
                                     <div class="control has-icons-left">
-                                        <input name="password" type="password" class="input" required>
+                                        <input name="password" type="password" class="input" required autocomplete="off">
                                         <span class="icon is-small is-left">
                                             <i class="fa fa-lock"></i>
                                         </span>
@@ -63,7 +63,7 @@ if (isset($_SESSION["isAuthenticated"])) {
                                 <div class="field">
                                     <label class="label">Verify Password</label>
                                     <div class="control has-icons-left">
-                                        <input name="verifyPassword" type="password" class="input" required>
+                                        <input name="verifyPassword" type="password" class="input" required autocomplete="off">
                                         <span class="icon is-small is-left">
                                             <i class="fa fa-lock"></i>
                                         </span>
