@@ -63,6 +63,9 @@ class NoteColumnObserver {
         let user_id = getUserState().id;
         let selected_folder_id = getSelectedFolderState();
         let folders = getFoldersState();
+        if (folders) {
+            console.log("ran");
+        }
         if (selected_folder_id == 0) {
             buildCreateNoteAllNotesModal({
                 input_id: "modal-create-note-all-notes-input",
