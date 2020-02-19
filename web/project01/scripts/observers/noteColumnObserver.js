@@ -96,7 +96,7 @@ class NoteColumnObserver {
                 });
                 let dropdownItems = document.getElementsByClassName("all-notes-modal-dropdown-menu-items");
                 for (let i = 0; i < dropdownItems.length; i++) {
-                    let dropdownItem = dropdownItems[0];
+                    let dropdownItem = dropdownItems[i];
                     addUniqueTrackedListener(dropdownItem, 'onclick', () => {
                         let folder_id = dropdownItem.getAttribute("folder-id");
                         let folder_title = dropdownItem.innerHTML;
