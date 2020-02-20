@@ -22,7 +22,11 @@ class QuillObserver {
 
         setInterval(() => {
             if (change.length() > 0) {
-                saveCurrentNote().then(() => console.log("Saved"));
+                saveCurrentNote().then(() => {
+                    let user_id = getUserState().id;
+                    this.store.dispatch(getAllNotes(user_id));
+                    this.store.dispatch(getAllNotesInFolders(user_id))
+                });
                 change = new Delta();
             }
         }, 1000);
