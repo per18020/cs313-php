@@ -16,7 +16,7 @@ function login() {
         .then((res) => { return res.json(); })
         .then((res) => {
             if (res.error) {
-                error(res.errormsg);
+                error("Something went wrong.");
             } else {
                 postData("/project01/api/authenticate.php", { email: mainForm.email.value, password: mainForm.password.value })
                 .then((res) => { return res.json() })
