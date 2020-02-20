@@ -33,6 +33,7 @@ const quill = new Quill('#editor', {
         },
         markdownShortcuts: {}
     },
+    bounds: '#scrolling-container',
     scrollingContainer: '#scrolling-container'
 });
 
