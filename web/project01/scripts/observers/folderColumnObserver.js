@@ -126,6 +126,7 @@ class FolderColumnObserver {
                 }).then(() => {
                     return this.store.dispatch(getAllFolders(user_id));
                 }).then(() => {
+                    console.log("ran these");
                     this.store.dispatch(getAllNotes(user_id));
                     this.store.dispatch(getAllNotesInFolders(user_id));
                 })
