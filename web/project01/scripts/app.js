@@ -26,7 +26,6 @@ const bindings = {
 }
 
 const quill = new Quill('#editor', {
-    theme: 'bubble',
     modules: {
         keyboard: {
             bindings: bindings
@@ -34,7 +33,8 @@ const quill = new Quill('#editor', {
         markdownShortcuts: {}
     },
     bounds: '#scrolling-container',
-    scrollingContainer: '#scrolling-container'
+    scrollingContainer: '#scrolling-container',
+    theme: 'bubble',
 });
 
 const documentClickHandler = new DocumentClickHandler();
