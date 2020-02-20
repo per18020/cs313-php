@@ -24,8 +24,12 @@ class QuillObserver {
             if (change.length() > 0) {
                 saveCurrentNote().then(() => {
                     let user_id = getUserState().id;
-                    this.store.dispatch(getAllNotes(user_id));
-                    this.store.dispatch(getAllNotesInFolders(user_id))
+                    let folder_id = getSelectedFolderState();
+                    if (folder_id == 0) {
+                        this.store.dispatch(getAllNotesInFolders(user_id));
+                    } else {
+                        this.store.dispatch(getAllNotes(user_id));
+                    }
                 });
                 change = new Delta();
             }
@@ -38,7 +42,7 @@ class QuillObserver {
             this.quill.enable();
             let newData = formatJSONString(selectedNote.data);
             let oldData = JSON.stringify(this.quill.getContents());
-            if (newData != oldData) { 
+            if (newData != oldData) {
                 // Only set contents if the data coming from the state object is different than what's already in there. 
                 // This should only really run once when a note is loaded in.
                 this.loadedDataFromStore = true;
