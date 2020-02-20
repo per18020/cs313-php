@@ -111,27 +111,22 @@ class FolderColumnObserver {
             addUniqueTrackedListener(document.getElementById("modal-delete-folder-delete-button"), 'onclick', () => {
                 let user_id = getUserState().id;
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
-                // Delete notes then folder
-
+                // Delete notes then folder, refresh and select all notes by default
                 let promises = [];
-
                 if (notes) {
                     for (let i = 0; i < notes.length; i++) {
                         promises.push(deleteNote(user_id, notes[i].note.id));
                     }
                 }
-
                 Promise.all(promises).then(() => {
                     return deleteFolder(user_id, folder_id);
                 }).then(() => {
                     return this.store.dispatch(getAllFolders(user_id));
                 }).then(() => {
-                    console.log("ran these");
-                    this.store.dispatch(getAllNotes(user_id));
-                    this.store.dispatch(getAllNotesInFolders(user_id));
-                })
-
-
+                    return this.store.dispatch(getAllNotes(user_id));
+                }).then(() => {
+                    this.store.dispatch(selectFolder(0));
+                });
             });
             addUniqueTrackedListener(document.getElementById("modal-delete-folder-cancel-button"), 'onclick', () => {
                 document.getElementById("modal-target").parentNode.classList.remove("is-active");
