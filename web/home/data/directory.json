@@ -17,6 +17,10 @@
         {
             "title": "Week 03 - Shopping Cart",
             "path": "/week03/assignment/index.php"
+        },
+        {
+            "title": "Week 09 - Postal Rate Calculator",
+            "path": "https://protected-badlands-46149.herokuapp.com/week09/prove"
         }
     ],
     "team": [
